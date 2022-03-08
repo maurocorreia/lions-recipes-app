@@ -25,16 +25,16 @@ function App() {
       <Route exact path="/" component={ Login } />
       <Route exact path="/foods" component={ Foods } />
       <Route exact path="/drinks" component={ Drinks } />
-      <Route exact path="/foods/:id-da-receita" component={ DetailedFood } />
-      <Route exact path="/drinks/:id-da-receita" component={ DetailedDrink } />
+      <Route exact path="/foods/:idFood" component={ DetailedFood } />
+      <Route exact path="/drinks/:idDrink" component={ DetailedDrink } />
       <Route
         exact
-        path="/foods/:id-da-receita/in-progress"
+        path="/foods/:idFood/in-progress"
         component={ FoodInProgress }
       />
       <Route
         exact
-        path="/drinks/:id-da-receita/in-progress"
+        path="/drinks/:idDrink/in-progress"
         component={ DrinkInProgress }
       />
       <Route exact path="/explore" component={ Explore } />
