@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import getRandomDrinkRecipe from './service';
 
 export default function ExploreDrinks() {
@@ -29,6 +30,7 @@ export default function ExploreDrinks() {
       >
         Surprise me!
       </button>
+      <Footer />
     </div>
   );
 }
