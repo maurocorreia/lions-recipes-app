@@ -32,7 +32,6 @@ export default function Search() {
       if (recipesList.length === 1) {
         history.push(`${pathname}/${recipesList[0].idMeal || recipesList[0].idDrink}`);
       } else {
-        console.log(recipesList);
         dispatch(saveListRecipes(recipesList));
       }
     }
