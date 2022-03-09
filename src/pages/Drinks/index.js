@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import Card from '../../components/Card';
 
@@ -18,6 +19,7 @@ export default function Drinks() {
             index={ index }
           />))}
       </section>
+      <Footer />
     </section>
   );
 }
