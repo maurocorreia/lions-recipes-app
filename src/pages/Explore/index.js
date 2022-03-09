@@ -23,7 +23,7 @@ export default function Explore() {
       >
         Explore Drinks
       </button>
-       <Footer />
+      <Footer />
     </div>
   );
 }

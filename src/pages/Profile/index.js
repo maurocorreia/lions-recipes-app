@@ -38,7 +38,7 @@ export default function Profile() {
         >
           Logout
         </button>
-        
+
       </main>
       <Footer />
 
