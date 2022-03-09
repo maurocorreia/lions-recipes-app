@@ -7,12 +7,8 @@ export default function Footer() {
   return (
     <footer
       style={ {
-        // left: '0',
         bottom: '0px',
         position: 'fixed',
-        // width: '100%',
-        // backgroundColor: 'black',
-        // overflow: 'hidden',
       } }
       data-testid="footer"
     >
