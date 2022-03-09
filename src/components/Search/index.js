@@ -1,9 +1,10 @@
 import React, { useRef, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import redirectFetch from '../../services/FetchHeader';
 
 export default function Search() {
   const history = useHistory();
+  const { pathname } = useLocation();
   const search = useRef();
   const [filter, setFilter] = useState('');
 
@@ -17,10 +18,14 @@ export default function Search() {
     return true;
   }
 
-  function searchByFiler() {
-    const { location } = history;
+  async function searchByFiler() {
     const { current: { value } } = search;
-    if (checkFirstLetter(value)) redirectFetch(location.pathname, `${filter}${value}`);
+    if (checkFirstLetter(value)) {
+      const recipesList = await redirectFetch(pathname, `${filter}${value}`);
+      if (recipesList.length === 1) {
+        history.push(`${pathname}/${recipesList[0].idMeal || recipesList[0].idDrink}`);
+      }
+    }
   }
 
   return (
