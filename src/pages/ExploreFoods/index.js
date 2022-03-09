@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import getRandomFoodRecipe from './service';
+import getRandomFoodRecipe from '../../services/ExploreFoods';
 
 export default function ExploreFoods() {
   const history = useHistory();
