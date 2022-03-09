@@ -10,8 +10,9 @@ export default function Profile() {
     <>
       <Header title="Profile" />
 
-      <section>
-        <h1 data-testid="profile-email">{email.email}</h1>
+      <main>
+
+        <h1 data-testid="profile-email">{email && email.email}</h1>
         <button
           data-testid="profile-done-btn"
           type="button"
@@ -37,7 +38,7 @@ export default function Profile() {
           Logout
         </button>
 
-      </section>
+      </main>
     </>
   );
 }
