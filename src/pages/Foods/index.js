@@ -4,17 +4,16 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import { fetchAllFoods } from '../../services/FetchDrinksAndFoods';
 import { saveListRecipes } from '../../redux/actions';
-import InitialRender from '../../components/InitialRender';
+import RenderCard from '../../components/RenderCard';
 import { fetchFiltersFood, fetchFoodsByCategory } from '../../services/FetchFilters';
 
 export default function Foods() {
-  const [foodsRecipesFiltered, setfoodsRecipesFiltered] = useState(null);
   const [lastFilter, setLastFilter] = useState('');
   const [filters, setFilters] = useState([]);
   const dispatch = useDispatch();
 
-  const serachFoodRecipes = useSelector(({ recipesReducer }) => (
-    recipesReducer.searchRecipes));
+  const recipes = useSelector(({ recipesReducer }) => (
+    recipesReducer.recipes));
 
   useEffect(() => {
     async function getAllFoodsAndFilters() {
@@ -25,10 +24,11 @@ export default function Foods() {
   }, [dispatch]);
 
   async function handleClick(strCategory) {
-    if (lastFilter === strCategory) {
-      setfoodsRecipesFiltered(await fetchFoodsByCategory(''));
+    const checkFilter = strCategory === lastFilter || strCategory === 'All';
+    if (checkFilter) {
+      dispatch(saveListRecipes(await fetchAllFoods()));
     } else {
-      setfoodsRecipesFiltered(await fetchFoodsByCategory(strCategory));
+      dispatch(saveListRecipes(await fetchFoodsByCategory(strCategory)));
       setLastFilter(strCategory);
     }
   }
@@ -39,7 +39,7 @@ export default function Foods() {
       <section>
         <button
           type="button"
-          onClick={ () => handleClick('') }
+          onClick={ () => handleClick('All') }
           data-testid="All-category-filter"
         >
           All
@@ -54,7 +54,7 @@ export default function Foods() {
             {strCategory}
           </button>))}
       </section>
-      <InitialRender Allrecipes={ foodsRecipesFiltered || serachFoodRecipes } />
+      <RenderCard Allrecipes={ recipes } />
       <Footer />
     </section>
   );

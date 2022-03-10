@@ -4,17 +4,16 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import { fetchAllDrinks } from '../../services/FetchDrinksAndFoods';
 import { saveListRecipes } from '../../redux/actions';
-import InitialRender from '../../components/InitialRender';
+import RenderCard from '../../components/RenderCard';
 import { fetchFiltersDrinks, fetchDrinksByCategory } from '../../services/FetchFilters';
 
 export default function Drinks() {
-  const [drinksRecipesFiltered, setDrinksRecipesFiltered] = useState(null);
   const [lastFilter, setLastFilter] = useState('');
   const [filters, setFilters] = useState([]);
   const dispatch = useDispatch();
 
-  const searchDrinksRecipes = useSelector(({ recipesReducer }) => (
-    recipesReducer.searchRecipes));
+  const recipes = useSelector(({ recipesReducer }) => (
+    recipesReducer.recipes));
 
   useEffect(() => {
     async function getAllFoodsAndFilters() {
@@ -25,10 +24,11 @@ export default function Drinks() {
   }, [dispatch]);
 
   async function handleClick(strCategory) {
-    if (lastFilter === strCategory) {
-      setDrinksRecipesFiltered(await fetchDrinksByCategory(''));
+    const checkFilter = strCategory === lastFilter || strCategory === 'All';
+    if (checkFilter) {
+      dispatch(saveListRecipes(await fetchAllDrinks()));
     } else {
-      setDrinksRecipesFiltered(await fetchDrinksByCategory(strCategory));
+      dispatch(saveListRecipes(await fetchDrinksByCategory(strCategory)));
       setLastFilter(strCategory);
     }
   }
@@ -40,7 +40,7 @@ export default function Drinks() {
         <button
           data-testid="All-category-filter"
           type="button"
-          onClick={ () => handleClick('') }
+          onClick={ () => handleClick('All') }
         >
           All
         </button>
@@ -54,7 +54,7 @@ export default function Drinks() {
             {strCategory}
           </button>))}
       </section>
-      <InitialRender Allrecipes={ drinksRecipesFiltered || searchDrinksRecipes } />
+      <RenderCard Allrecipes={ recipes } />
       <Footer />
     </section>
   );
