@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
@@ -9,11 +9,11 @@ const copy = require('clipboard-copy');
 
 export default function DetailedFoodHeader({ data }) {
   // Clipboard.
-  const { pathname } = useLocation();
+  const { idFood } = useParams();
   const [copied, setCopied] = useState(false);
 
   function copyLink() {
-    copy(`http://localhost:3000${pathname}`);
+    copy(`http://localhost:3000/foods/${idFood}`);
     setCopied(true);
   }
 
