@@ -67,23 +67,23 @@
   }
 }
 
-.recomendation-div{
+.recomendation-div {
   margin-bottom: 50px;
   max-width: 100%;
   overflow: hidden;
 }
 
-.recomendation-wrap{
+.recomendation-wrap {
   display: flex;
   gap: 10px;
   overflow-x: scroll;
 }
 
-.recomendation-image{
+.recomendation-image {
   width: 50vw;
 }
 
-.start-button{
-  bottom: 0px;
+.start-button {
+  bottom: 0;
   position: fixed;
 }
