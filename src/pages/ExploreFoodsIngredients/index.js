@@ -23,6 +23,7 @@ export default function ExploreFoodsIngredients() {
   async function handleIngredient(e) {
     e.persist();
     const DATA = await getIngredientSearch(e.target.getAttribute('name'));
+    console.log(DATA);
     dispatch(saveListRecipes(DATA));
     console.log(e.target.getAttribute('name'));
     history.push('/foods');

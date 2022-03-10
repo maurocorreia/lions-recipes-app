@@ -17,11 +17,13 @@ export default function Foods() {
 
   useEffect(() => {
     async function getAllFoodsAndFilters() {
-      dispatch(saveListRecipes(await fetchAllFoods()));
+      if (recipes.length === 0) {
+        dispatch(saveListRecipes(await fetchAllFoods()));
+      }
       setFilters(await fetchFiltersFood());
     }
     getAllFoodsAndFilters();
-  }, [dispatch]);
+  }, [dispatch, recipes]);
 
   async function handleClick(strCategory) {
     const checkFilter = strCategory === lastFilter || strCategory === 'All';

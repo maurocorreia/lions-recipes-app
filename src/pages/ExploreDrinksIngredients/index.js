@@ -25,7 +25,7 @@ export default function ExploreDrinkIngredients() {
     const DATA = await getIngredientSearch(e.target.getAttribute('name'));
     dispatch(saveListRecipes(DATA));
     console.log(e.target.getAttribute('name'));
-    history.push('/foods');
+    history.push('/drinks');
   }
 
   return (
