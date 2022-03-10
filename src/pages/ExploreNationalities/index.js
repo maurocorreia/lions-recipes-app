@@ -15,6 +15,7 @@ export default function ExploreNationalities() {
   useEffect(() => {
     async function getNations() {
       setNationalities(await getNationalities());
+      setRecipes(await getAll());
     }
     getNations();
   }, []);
@@ -60,7 +61,6 @@ export default function ExploreNationalities() {
 
       {recipesByNation.map((nation, index) => (
         <button
-          data-testid={ `${index}-recipe-card` }
           type="button"
           key={ index }
           onClick={ handleRecipe }

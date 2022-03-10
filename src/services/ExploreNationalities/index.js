@@ -16,9 +16,10 @@ export async function getFoodsByArea(area) {
 }
 
 export async function getAll() {
-  const ENDPOINT = 'www.themealdb.com/api/json/v1/1/random.php';
+  const MAX_INGREDIENTS = 12;
+  const ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
   const REQUEST = await fetch(ENDPOINT);
   const DATA = await REQUEST.json().then((data) => data.meals);
 
-  return DATA;
+  return DATA.slice(0, MAX_INGREDIENTS);
 }
