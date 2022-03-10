@@ -53,6 +53,37 @@ export default function DetailedFood() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foodEntries]);
 
+  /* START BUTTON */
+  const [buttonStatus, setButtonStatus] = useState(true);
+  const [buttonName, setButtonName] = useState('Start Recipe');
+
+  /* Check if the Recipe is done. */
+  function checkRecipeDone() {
+    const prevState = JSON.parse(localStorage.getItem('doneRecipes'));
+    if (prevState !== null) {
+      prevState.forEach((doneRecipe) => {
+        if (doneRecipe.id === foodData.idMeal) setButtonStatus(false);
+      });
+    }
+  }
+
+  /* Check if the Recipe is in Progress. */
+  function checkRecipeInProgress() {
+    const prevState = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (prevState !== null) {
+      const mealId = Object.keys(prevState.meals);
+      mealId.forEach((progress) => {
+        if (progress === foodData.idMeal) setButtonName('Continue Recipe');
+      });
+    }
+  }
+
+  useEffect(() => {
+    checkRecipeInProgress();
+    checkRecipeDone();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [foodData]);
+
   return (
     <>
       <DetailedFoodHeader data={ foodData } />
@@ -91,6 +122,7 @@ export default function DetailedFood() {
           Sorry, your browser do not support embedded videos.
         </video>
       </section>
+
       <section className="recomendation-div">
         <section className="recomendation-wrap">
           { recommendedFoods !== '' && recommendedFoods.map((drink, index) => (
@@ -106,15 +138,18 @@ export default function DetailedFood() {
       </section>
 
       <section>
-        <button
-          className="start-button"
-          aria-label="Start Recipe"
-          data-testid="start-recipe-btn"
-          type="button"
-          onClick={ () => history.push(`/foods/${idFood}/in-progress`) }
-        >
-          Start Recipe
-        </button>
+        {buttonStatus
+         && (
+           <button
+             className="start-button"
+             aria-label="Start Recipe"
+             data-testid="start-recipe-btn"
+             type="button"
+             onClick={ () => history.push(`/foods/${idFood}/in-progress`) }
+           >
+             { buttonName }
+           </button>
+         )}
       </section>
     </>
   );

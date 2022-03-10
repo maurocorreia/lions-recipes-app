@@ -36,13 +36,13 @@ export default function DetailedDrink() {
   }
 
   // Get Measures
-  const [foodMeasure, setFoodMeasure] = useState([]);
+  const [drinkMeasure, setDrinkMeasure] = useState([]);
 
   function getMeasures() {
     drinkEntries.forEach((entrie) => {
       const notNull = entrie[1] !== null && entrie[1] !== '';
       if (entrie[0].includes('strMeasure') && notNull) {
-        setFoodMeasure((prevState) => [...prevState, entrie[1]]);
+        setDrinkMeasure((prevState) => [...prevState, entrie[1]]);
       }
     });
   }
@@ -52,6 +52,37 @@ export default function DetailedDrink() {
     getMeasures();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [drinkEntries]);
+
+  /* START BUTTON */
+  const [buttonStatus, setButtonStatus] = useState(true);
+  const [buttonName, setButtonName] = useState('Start Recipe');
+
+  /* Check if the Recipe is done. */
+  function checkRecipeDone() {
+    const prevState = JSON.parse(localStorage.getItem('doneRecipes'));
+    if (prevState !== null) {
+      prevState.forEach((doneRecipe) => {
+        if (doneRecipe.id === drinkData.idDrink) setButtonStatus(false);
+      });
+    }
+  }
+
+  /* Check if the Recipe is in Progress. */
+  function checkRecipeInProgress() {
+    const prevState = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (prevState !== null) {
+      const drinkId = Object.keys(prevState.cocktails);
+      drinkId.forEach((progress) => {
+        if (progress === drinkData.idDrink) setButtonName('Continue Recipe');
+      });
+    }
+  }
+
+  useEffect(() => {
+    checkRecipeInProgress();
+    checkRecipeDone();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [drinkData]);
 
   return (
     <>
@@ -64,7 +95,7 @@ export default function DetailedDrink() {
               key={ index }
               data-testid={ `${index}-ingredient-name-and-measure` }
             >
-              {`${ingredient} — ${foodMeasure[index]}`}
+              {`${ingredient} — ${drinkMeasure[index]}`}
             </li>
           ))}
         </ul>
@@ -89,15 +120,18 @@ export default function DetailedDrink() {
       </section>
 
       <section>
-        <button
-          className="start-button"
-          aria-label="Start Recipe"
-          data-testid="start-recipe-btn"
-          type="button"
-          onClick={ () => history.push(`/drinks/${idDrink}/in-progress`) }
-        >
-          Start Recipe
-        </button>
+        {buttonStatus
+         && (
+           <button
+             className="start-button"
+             aria-label="Start Recipe"
+             data-testid="start-recipe-btn"
+             type="button"
+             onClick={ () => history.push(`/drinks/${idDrink}/in-progress`) }
+           >
+             { buttonName }
+           </button>
+         )}
       </section>
     </>
   );
