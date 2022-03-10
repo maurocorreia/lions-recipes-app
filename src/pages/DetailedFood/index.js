@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory, useLocation } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { fetchFoodbyId, fetchRecommendedDrinks } from '../../services/DetailedItem';
-import shareIcon from '../../images/shareIcon.svg';
-import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import RecommendedCard from '../../components/RecommendedCard';
+import DetailedFoodHeader from '../../components/DetailedFoodHeader';
 
 export default function DetailedFood() {
   //  Globals
   const history = useHistory();
   const { idFood } = useParams();
-  const { pathname } = useLocation();
-  const copy = require('clipboard-copy'); // eslint-disable-line global-require
 
   //  Fetch and Load.
   const [foodData, setFoodData] = useState('');
@@ -18,7 +15,7 @@ export default function DetailedFood() {
 
   useEffect(() => {
     fetchFoodbyId(idFood).then((result) => setFoodData(result));
-    fetchRecommendedDrinks().then((result) => setRecommendedFoods(result));
+    fetchRecommendedDrinks().then((result) => setRecommendedFoods(result)); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idFood]);
 
   //  Get Ingredients
@@ -56,26 +53,9 @@ export default function DetailedFood() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foodEntries]);
 
-  // Clipboard
-  const [copied, setCopied] = useState(false);
-  function copyLink() {
-    copy(`http://localhost:3000${pathname}`);
-    setCopied(true);
-  }
-
   return (
     <>
-      <header>
-        <img data-testid="recipe-photo" src={ foodData.strMealThumb } alt="foodImage" />
-        <h1 data-testid="recipe-title">{ foodData.strMeal }</h1>
-        <h2 data-testid="recipe-category">{ foodData.strCategory }</h2>
-        <button type="button" data-testid="share-btn" onClick={ () => copyLink() }>
-          <img src={ shareIcon } alt="shareIcon" />
-        </button>
-        <button type="button" data-testid="favorite-btn">
-          <img src={ whiteHeartIcon } alt="favIcon" />
-        </button>
-      </header>
+      <DetailedFoodHeader data={ foodData } />
 
       <section>
         <ul>
@@ -138,11 +118,6 @@ export default function DetailedFood() {
           Start Recipe
         </button>
       </section>
-
-      <section>
-        {copied && <p>Link copied!</p>}
-      </section>
-
     </>
   );
 }

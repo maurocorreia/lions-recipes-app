@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory, useLocation } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { fetchDrinkbyId, fetchRecommendedFoods } from '../../services/DetailedItem';
-import shareIcon from '../../images/shareIcon.svg';
-import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import RecommendedCard from '../../components/RecommendedCard';
+import DetailedDrinkHeader from '../../components/DetailedDrinkHeader';
 
 export default function DetailedDrink() {
   //  Globals
   const history = useHistory();
   const { idDrink } = useParams();
-  const { pathname } = useLocation();
-  const copy = require('clipboard-copy'); // eslint-disable-line global-require
 
   //  Fetch and Load.
   const [drinkData, setDrinkData] = useState('');
@@ -56,26 +53,9 @@ export default function DetailedDrink() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [drinkEntries]);
 
-  // Clipboard
-  const [copied, setCopied] = useState(false);
-  function copyLink() {
-    copy(`http://localhost:3000${pathname}`);
-    setCopied(true);
-  }
-
   return (
     <>
-      <header>
-        <img data-testid="recipe-photo" src={ drinkData.strDrinkThumb } alt="foodImage" />
-        <h1 data-testid="recipe-title">{ drinkData.strDrink }</h1>
-        <h2 data-testid="recipe-category">{ drinkData.strAlcoholic }</h2>
-        <button type="button" data-testid="share-btn" onClick={ () => copyLink() }>
-          <img src={ shareIcon } alt="shareIcon" />
-        </button>
-        <button type="button" data-testid="favorite-btn">
-          <img src={ whiteHeartIcon } alt="favIcon" />
-        </button>
-      </header>
+      <DetailedDrinkHeader data={ drinkData } />
 
       <section>
         <ul>
@@ -119,10 +99,6 @@ export default function DetailedDrink() {
         >
           Start Recipe
         </button>
-      </section>
-
-      <section>
-        {copied && <p>Link copied!</p>}
       </section>
     </>
   );
