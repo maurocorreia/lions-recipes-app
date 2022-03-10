@@ -5,10 +5,11 @@ import shareIcon from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 
+const copy = require('clipboard-copy');
+
 export default function DetailedDrinkHeader({ data }) {
   // Clipboard.
   const { pathname } = useLocation();
-  const copy = require('clipboard-copy'); // eslint-disable-line global-require
   const [copied, setCopied] = useState(false);
 
   function copyLink() {

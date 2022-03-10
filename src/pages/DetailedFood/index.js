@@ -91,25 +91,23 @@ export default function DetailedFood() {
           Sorry, your browser do not support embedded videos.
         </video>
       </section>
-
-      <section>
-        { recommendedFoods !== '' && recommendedFoods.map((drink, index) => (
-          <RecommendedCard
-            index={ index }
-            key={ drink.strDrink }
-            title={ drink.strDrink }
-            subtitle={ drink.strAlcoholic }
-            image={ drink.strDrinkThumb }
-          />
-        ))}
+      <section className="recomendation-div">
+        <section className="recomendation-wrap">
+          { recommendedFoods !== '' && recommendedFoods.map((drink, index) => (
+            <RecommendedCard
+              index={ index }
+              key={ drink.strDrink }
+              title={ drink.strDrink }
+              subtitle={ drink.strAlcoholic }
+              image={ drink.strDrinkThumb }
+            />
+          ))}
+        </section>
       </section>
 
       <section>
         <button
-          style={ {
-            bottom: '0px',
-            position: 'fixed',
-          } }
+          className="start-button"
           aria-label="Start Recipe"
           data-testid="start-recipe-btn"
           type="button"

@@ -74,24 +74,23 @@ export default function DetailedDrink() {
         <p data-testid="instructions">{drinkData.strInstructions}</p>
       </section>
 
-      <section>
-        { recommendedDrinks !== '' && recommendedDrinks.map((food, index) => (
-          <RecommendedCard
-            index={ index }
-            key={ food.strMeal }
-            title={ food.strMeal }
-            subtitle={ food.strCategory }
-            image={ food.strMealThumb }
-          />
-        ))}
+      <section className="recomendation-div">
+        <section className="recomendation-wrap">
+          { recommendedDrinks !== '' && recommendedDrinks.map((food, index) => (
+            <RecommendedCard
+              index={ index }
+              key={ food.strMeal }
+              title={ food.strMeal }
+              subtitle={ food.strCategory }
+              image={ food.strMealThumb }
+            />
+          ))}
+        </section>
       </section>
 
       <section>
         <button
-          style={ {
-            bottom: '0px',
-            position: 'fixed',
-          } }
+          className="start-button"
           aria-label="Start Recipe"
           data-testid="start-recipe-btn"
           type="button"
