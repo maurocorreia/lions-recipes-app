@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
 function IngredientsList({ ingredients, measure, idRecipes, type, data }) {
-  console.log(data);
   const history = useHistory();
 
   const [checkedInput, setCheckedInput] = useState(() => {
@@ -66,7 +65,7 @@ function IngredientsList({ ingredients, measure, idRecipes, type, data }) {
       tags: data.strTags ? data.strTags.split(',') : [],
     };
 
-    const prevStore = localStorage.getItem('doneRecipes');
+    const prevStore = JSON.parse(localStorage.getItem('doneRecipes'));
     if (prevStore) {
       localStorage.setItem('doneRecipes', JSON.stringify(
         [...prevStore, doneRecipe],
