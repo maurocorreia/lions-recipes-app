@@ -32,6 +32,30 @@ export default function DoneRecipes() {
     <div>
       <Header title="Done Recipes" />
       <div>
+        <button
+          value="all"
+          type="button"
+          data-testid="filter-by-all-btn"
+          // onClick={ clickButton }
+        >
+          All
+        </button>
+        <button
+          value="food"
+          type="button"
+          data-testid="filter-by-food-btn"
+          // onClick={ clickButton }
+        >
+          Food
+        </button>
+        <button
+          value="drink"
+          type="button"
+          data-testid="filter-by-drink-btn"
+          // onClick={ clickButton }
+        >
+          Drinks
+        </button>
         {mockDoneRecipes.map((item, index) => (
           <CardRecipes
             key={ item.name }

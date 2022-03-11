@@ -1,37 +1,26 @@
 import React from 'react';
+// import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import shareIcon from '../../images/shareIcon.svg';
 
+// const copy = require('clipboard-copy');
+
 export default function CardRecipes({ recipe, index }) {
-  console.log(recipe);
-  console.log(index);
+  // console.log(useParams());
+  // const [copied, setCopied] = useState(false);
+
+  // function copyLink() {
+  //   copy(`http://localhost:3000/foods/${idFood}`);
+  //   setCopied(true);
+  // }
+
   return (
     <>
-      <div>
-        <button
-          type="button"
-          data-testid="filter-by-all-btn"
-        >
-          All
-        </button>
-        <button
-          type="button"
-          data-testid="filter-by-food-btn"
-        >
-          Food
-        </button>
-        <button
-          type="button"
-          data-testid="filter-by-drink-btn"
-        >
-          Drinks
-        </button>
-        <img
-          data-testid={ `${index}-horizontal-image` }
-          src={ recipe.image }
-          alt={ recipe.name }
-        />
-      </div>
+      <img
+        data-testid={ `${index}-horizontal-image` }
+        src={ recipe.image }
+        alt={ recipe.name }
+      />
       {/* Acho que com ternário fica melhor, não esquecer de refatorar */}
       <div>
         {recipe.type === 'food' && (
@@ -55,6 +44,7 @@ export default function CardRecipes({ recipe, index }) {
       </div>
       <button
         type="button"
+        onClick={ () => copyLink() }
       >
         <img
           data-testid={ `${index}-horizontal-share-btn` }
@@ -62,6 +52,7 @@ export default function CardRecipes({ recipe, index }) {
           alt="IconShare"
         />
       </button>
+      {/* {copied && <p>Link copied!</p>} */}
       {recipe.tags && (
         <ul>
           {recipe.tags.filter((_tag, i) => i < 2).map((tag) => (
