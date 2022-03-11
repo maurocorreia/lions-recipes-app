@@ -66,3 +66,24 @@
     transform: rotate(-10deg);
   }
 }
+
+.recomendation-div {
+  margin-bottom: 50px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.recomendation-wrap {
+  display: flex;
+  gap: 10px;
+  overflow-x: scroll;
+}
+
+.recomendation-image {
+  width: 50vw;
+}
+
+.start-button {
+  bottom: 0;
+  position: fixed;
+}

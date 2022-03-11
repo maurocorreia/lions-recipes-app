@@ -1,10 +1,10 @@
 const INITIAL_STATE = {
-  searchRecipes: [],
+  recipes: [],
 };
 
 const recipesReducer = (state = INITIAL_STATE, action) => {
   const objectRecipesReducer = {
-    GET_BY_FILTER_HEADER: { ...state, searchRecipes: action.payload },
+    GET_RECIPES: { ...state, recipes: action.payload },
   };
   return objectRecipesReducer[action.type] || state;
 };
