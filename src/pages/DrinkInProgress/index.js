@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { fetchDrinkbyId } from '../../services/DetailedItem';
 import DetailedDrinkHeader from '../../components/DetailedDrinkHeader';
+import IngredientsList from '../../components/IngredientsList';
 
 export default function DrinkInProgress() {
+  const STORAGE = localStorage.getItem('inProgressRecipes');
+  if (!STORAGE) {
+    localStorage.setItem('inProgressRecipes',
+      JSON.stringify({ cocktails: {}, meals: {} }));
+  }
   //  Globals
-  const history = useHistory();
   const { idDrink } = useParams();
-
   //  Fetch and Load.
   const [drinkData, setDrinkData] = useState('');
 
@@ -53,35 +57,13 @@ export default function DrinkInProgress() {
   return (
     <>
       <DetailedDrinkHeader data={ drinkData } />
-
-      <section>
-        <ul>
-          {drinkIngredients !== [] && drinkIngredients.map((ingredient, index) => (
-            <li
-              key={ index }
-              data-testid={ `${index}-ingredient-step` }
-            >
-              {`${ingredient} — ${drinkMeasure[index]}`}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section>
-        <p data-testid="instructions">{drinkData.strInstructions}</p>
-      </section>
-
-      <section>
-        <button
-          className="finish-button"
-          aria-label="Finish Recipe"
-          data-testid="finish-recipe-btn"
-          type="button"
-          onClick={ () => history.push('/done-recipes') }
-        >
-          Finish Recipe
-        </button>
-      </section>
+      <IngredientsList
+        ingredients={ drinkIngredients }
+        measure={ drinkMeasure }
+        idRecipes={ idDrink }
+        data={ drinkData }
+        type="cocktails"
+      />
     </>
   );
 }

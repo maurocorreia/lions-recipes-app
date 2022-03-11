@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { fetchFoodbyId } from '../../services/DetailedItem';
 import DetailedFoodHeader from '../../components/DetailedFoodHeader';
+import IngredientsList from '../../components/IngredientsList';
 
 export default function FoodInProgress() {
+  const STORAGE = localStorage.getItem('inProgressRecipes');
+  if (!STORAGE) {
+    localStorage.setItem('inProgressRecipes',
+      JSON.stringify({ cocktails: {}, meals: {} }));
+  }
+
   //  Globals
-  const history = useHistory();
   const { idFood } = useParams();
 
   //  Fetch and Load.
   const [foodData, setFoodData] = useState('');
+  // const [isDisabled, setDisabled] = useState(true);
 
   useEffect(() => {
     fetchFoodbyId(idFood).then((result) => setFoodData(result));
@@ -53,35 +60,13 @@ export default function FoodInProgress() {
   return (
     <>
       <DetailedFoodHeader data={ foodData } />
-
-      <section>
-        <ul>
-          {foodIngredients !== [] && foodIngredients.map((ingredient, index) => (
-            <li
-              key={ index }
-              data-testid={ `${index}-ingredient-step` }
-            >
-              {`${ingredient} — ${foodMeasure[index]}`}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section>
-        <p data-testid="instructions">{foodData.strInstructions}</p>
-      </section>
-
-      <section>
-        <button
-          className="finish-button"
-          aria-label="Finish Recipe"
-          data-testid="finish-recipe-btn"
-          type="button"
-          onClick={ () => history.push('/done-recipes') }
-        >
-          Finish Recipe
-        </button>
-      </section>
+      <IngredientsList
+        ingredients={ foodIngredients }
+        measure={ foodMeasure }
+        idRecipes={ idFood }
+        data={ foodData }
+        type="meals"
+      />
     </>
   );
 }
