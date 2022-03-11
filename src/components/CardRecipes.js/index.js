@@ -1,22 +1,36 @@
-import React from 'react';
-// import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import shareIcon from '../../images/shareIcon.svg';
 
-// const copy = require('clipboard-copy');
+const copy = require('clipboard-copy');
 
 export default function CardRecipes({ recipe, index }) {
-  // console.log(useParams());
-  // const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState(false);
 
-  // function copyLink() {
-  //   copy(`http://localhost:3000/foods/${idFood}`);
-  //   setCopied(true);
-  // }
+  const { push } = useHistory();
+
+  function copyLink() {
+    copy(`http://localhost:3000/foods/${recipe.id}`);
+    setCopied(true);
+  }
 
   return (
     <>
-      <img
+      <button
+        type="button"
+        onClick={ () => copyLink() }
+      >
+        <img
+          data-testid={ `${index}-horizontal-share-btn` }
+          src={ shareIcon }
+          alt="IconShare"
+        />
+      </button>
+      {copied && <p>Link copied!</p>}
+      <input
+        type="image"
+        onClick={ () => push(`${recipe.type}s/${recipe.id}`) }
         data-testid={ `${index}-horizontal-image` }
         src={ recipe.image }
         alt={ recipe.name }
@@ -36,24 +50,13 @@ export default function CardRecipes({ recipe, index }) {
           </p>
         )}
       </div>
-      <div>
+      <Link to={ `${recipe.type}s/${recipe.id}` }>
         <h3 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h3>
-      </div>
+      </Link>
       <div>
         <h2 data-testid={ `${index}-horizontal-done-date` }>{ recipe.doneDate }</h2>
       </div>
-      <button
-        type="button"
-        onClick={ () => copyLink() }
-      >
-        <img
-          data-testid={ `${index}-horizontal-share-btn` }
-          src={ shareIcon }
-          alt="IconShare"
-        />
-      </button>
-      {/* {copied && <p>Link copied!</p>} */}
-      {recipe.tags && (
+      {recipe.tags !== [] && (
         <ul>
           {recipe.tags.filter((_tag, i) => i < 2).map((tag) => (
             <ol key={ tag } data-testid={ `${index}-${tag}-horizontal-tag` }>{tag}</ol>))}

@@ -63,7 +63,7 @@ function IngredientsList({ ingredients, measure, idRecipes, type, data }) {
       name: data.strMeal || data.strDrink,
       image: data.strMealThumb || data.strDrinkThumb,
       doneDate: new Date().toISOString(),
-      tags: data.strTags || [],
+      tags: data.strTags ? data.strTags.split(',') : [],
     };
 
     const prevStore = localStorage.getItem('doneRecipes');
