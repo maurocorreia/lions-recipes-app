@@ -23,9 +23,9 @@ export default function FavoriteRecipes() {
 
   const clickButtonRecipe = ({ target }) => {
     if (target.value === 'food') {
-      setFavoriteRecipes(favoriteRecipes.filter((item) => item.type === 'food'));
+      setFavoriteRecipes(backup.filter((item) => item.type === 'food'));
     } else if (target.value === 'drink') {
-      setFavoriteRecipes(favoriteRecipes.filter((item) => item.type === 'drink'));
+      setFavoriteRecipes(backup.filter((item) => item.type === 'drink'));
     } else if (target.value === 'all') {
       setFavoriteRecipes(backup);
     }

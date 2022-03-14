@@ -41,9 +41,9 @@ export default function DoneRecipes() {
 
   const clickButtonRecipe = ({ target }) => {
     if (target.value === 'food') {
-      setDoneRecipes(doneRecipes.filter((item) => item.type === 'food'));
+      setDoneRecipes(backup.filter((item) => item.type === 'food'));
     } else if (target.value === 'drink') {
-      setDoneRecipes(doneRecipes.filter((item) => item.type === 'drink'));
+      setDoneRecipes(backup.filter((item) => item.type === 'drink'));
     } else if (target.value === 'all') {
       setDoneRecipes(backup);
     }

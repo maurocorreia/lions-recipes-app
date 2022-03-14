@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { userEmail } from '../../redux/actions';
 
+const PASSWORD_MIN_LENGTH = 6;
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabled, setDisabled] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const emailValidation = email.includes('@') && email.includes('.com');
+  const passwordValidation = password.length > PASSWORD_MIN_LENGTH;
+
   useEffect(() => {
-    const emailValidation = email.includes('@') && email.includes('.com');
-    const PASSWORD_MIN_LENGTH = 6;
-    if (emailValidation && password.length > PASSWORD_MIN_LENGTH) setDisabled(false);
+    if (emailValidation && passwordValidation) setDisabled(false);
     else setDisabled(true);
-  }, [email, password]);
+  }, [emailValidation, passwordValidation]);
 
   function handleLogin() {
     localStorage.setItem('mealsToken', 1);
@@ -41,9 +45,15 @@ export default function Login() {
           value={ password }
           data-testid="password-input"
           id="password-input"
-          type="password"
+          type={ isVisible ? 'text' : 'password' }
           onChange={ ({ target }) => setPassword(target.value) }
         />
+        <button
+          onClick={ () => setIsVisible((prevState) => !prevState) }
+          type="button"
+        >
+          {isVisible ? <AiFillEyeInvisible /> : <AiFillEye />}
+        </button>
       </label>
       <button
         disabled={ isDisabled }
