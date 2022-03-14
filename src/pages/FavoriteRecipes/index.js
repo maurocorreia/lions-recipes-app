@@ -13,7 +13,6 @@ export default function FavoriteRecipes() {
       setFavoriteRecipes([]);
     }
     setBackup(favoriteRecipe);
-    // console.log(doneRecipe);
     setFavoriteRecipes(favoriteRecipe);
   }
 
