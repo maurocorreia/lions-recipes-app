@@ -61,7 +61,7 @@ function IngredientsList({ ingredients, measure, idRecipes, type, data }) {
       alcoholicOrNot: data.strAlcoholic ? data.strAlcoholic : '',
       name: data.strMeal || data.strDrink,
       image: data.strMealThumb || data.strDrinkThumb,
-      doneDate: new Date().toISOString(),
+      doneDate: new Date().toDateString(),
       tags: data.strTags ? data.strTags.split(',') : [],
     };
 

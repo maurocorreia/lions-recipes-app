@@ -17,7 +17,7 @@ export default function Drinks() {
 
   useEffect(() => {
     async function getAllFoodsAndFilters() {
-      if (recipes.length === 0) {
+      if (recipes.length === 0 || recipes[0].idMeal) {
         dispatch(saveListRecipes(await fetchAllDrinks()));
       }
       setFilters(await fetchFiltersDrinks());

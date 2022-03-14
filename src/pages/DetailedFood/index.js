@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import YouTube from 'react-youtube';
 import { fetchFoodbyId, fetchRecommendedDrinks } from '../../services/DetailedItem';
 import RecommendedCard from '../../components/RecommendedCard';
 import DetailedFoodHeader from '../../components/DetailedFoodHeader';
@@ -10,7 +11,7 @@ export default function DetailedFood() {
   const { idFood } = useParams();
 
   //  Fetch and Load.
-  const [foodData, setFoodData] = useState('');
+  const [foodData, setFoodData] = useState({});
   const [recommendedFoods, setRecommendedFoods] = useState('');
 
   useEffect(() => {
@@ -105,22 +106,12 @@ export default function DetailedFood() {
         <p data-testid="instructions">{foodData.strInstructions}</p>
       </section>
 
-      <section>
-        <video
-          data-testid="video"
-          width="200"
-          height="150"
-          controls
-          src={ foodData.strYoutube }
-        >
-          <track
-            default
-            kind="captions"
-            srcLang="en"
-            src={ foodData.strYoutube }
-          />
-          Sorry, your browser do not support embedded videos.
-        </video>
+      <section data-testid="video">
+        {Object.keys(foodData).length
+        && <YouTube
+          opts={ { height: '200', width: '360' } }
+          videoId={ foodData.strYoutube.split('=')[1] }
+        />}
       </section>
 
       <section className="recomendation-div">

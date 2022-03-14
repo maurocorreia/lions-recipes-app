@@ -10,7 +10,7 @@ export default function DetailedDrink() {
   const { idDrink } = useParams();
 
   //  Fetch and Load.
-  const [drinkData, setDrinkData] = useState('');
+  const [drinkData, setDrinkData] = useState({});
   const [recommendedDrinks, setRecommendedDrinks] = useState('');
 
   useEffect(() => {
