@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import shareIcon from '../../images/shareIcon.svg';
 
@@ -7,8 +7,6 @@ const copy = require('clipboard-copy');
 
 export default function CardRecipes({ recipe, index, favorite }) {
   const [copied, setCopied] = useState(false);
-
-  const { push } = useHistory();
 
   function copyLink() {
     copy(`http://localhost:3000/foods/${recipe.id}`);
@@ -28,13 +26,14 @@ export default function CardRecipes({ recipe, index, favorite }) {
         />
       </button>
       {copied && <p>Link copied!</p>}
-      <input
-        type="image"
-        onClick={ () => push(`${recipe.type}s/${recipe.id}`) }
-        data-testid={ `${index}-horizontal-image` }
-        src={ recipe.image }
-        alt={ recipe.name }
-      />
+      <Link to={ `${recipe.type}s/${recipe.id}` }>
+        <img
+          width="200px"
+          data-testid={ `${index}-horizontal-image` }
+          src={ recipe.image }
+          alt={ recipe.name }
+        />
+      </Link>
       {/* Acho que com ternário fica melhor, não esquecer de refatorar */}
       <div>
         {recipe.type === 'food' && (
