@@ -53,7 +53,7 @@ export default function DetailedDrinkHeader({ data }) {
   // Check Favorite Button Status.
   function checkFavorite() {
     const prevState = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    if (prevState !== null) {
+    if (prevState) {
       prevState.forEach((favorited) => {
         if (favorited.id === data.idDrink) setIsFavorite(true);
       });
