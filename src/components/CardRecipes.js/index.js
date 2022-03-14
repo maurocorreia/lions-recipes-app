@@ -5,7 +5,7 @@ import shareIcon from '../../images/shareIcon.svg';
 
 const copy = require('clipboard-copy');
 
-export default function CardRecipes({ recipe, index, favorite }) {
+export default function CardRecipes({ recipe, index }) {
   const [copied, setCopied] = useState(false);
 
   function copyLink() {
@@ -53,16 +53,14 @@ export default function CardRecipes({ recipe, index, favorite }) {
         <h3 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h3>
       </Link>
       <div>
-        {favorite
-        && (<h2 data-testid={ `${index}-horizontal-done-date` }>{ recipe.doneDate }</h2>)}
+        <h2 data-testid={ `${index}-horizontal-done-date` }>{ recipe.doneDate }</h2>
       </div>
-      {favorite
-      && (recipe.tags !== [] && (
+      {recipe.tags !== [] && (
         <ul>
           {recipe.tags.filter((_tag, i) => i < 2).map((tag) => (
             <ol key={ tag } data-testid={ `${index}-${tag}-horizontal-tag` }>{tag}</ol>))}
         </ul>
-      ))}
+      )}
     </>
   );
 }
