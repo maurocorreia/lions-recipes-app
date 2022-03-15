@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { fetchDrinkbyId, fetchRecommendedFoods } from '../../services/DetailedItem';
 import RecommendedCard from '../../components/RecommendedCard';
 import DetailedDrinkHeader from '../../components/DetailedDrinkHeader';
@@ -12,6 +13,10 @@ export default function DetailedDrink() {
   //  Fetch and Load.
   const [drinkData, setDrinkData] = useState({});
   const [recommendedDrinks, setRecommendedDrinks] = useState('');
+
+  const doneAndInProgress = useSelector(({ recipesReducer }) => ({
+    inProgressRecipes: recipesReducer.inProgressRecipes, done: recipesReducer.doneRecipes,
+  }));
 
   useEffect(() => {
     fetchDrinkbyId(idDrink).then((result) => setDrinkData(result));
@@ -57,26 +62,36 @@ export default function DetailedDrink() {
   const [buttonStatus, setButtonStatus] = useState(true);
   const [buttonName, setButtonName] = useState('Start Recipe');
 
-  /* Check if the Recipe is done. */
   function checkRecipeDone() {
-    const prevState = JSON.parse(localStorage.getItem('doneRecipes'));
-    if (prevState !== null) {
-      prevState.forEach((doneRecipe) => {
-        if (doneRecipe.id === drinkData.idDrink) setButtonStatus(false);
-      });
-    }
+    const { done } = doneAndInProgress;
+    if (done.some(({ id }) => id === drinkData.idDrink)) setButtonStatus(false);
+  }
+
+  /* Check if the Recipe is done. */
+  // function checkRecipeDone() {
+  //   const prevState = JSON.parse(localStorage.getItem('doneRecipes'));
+  //   if (prevState !== null) {
+  //     prevState.forEach((doneRecipe) => {
+  //       if (doneRecipe.id === drinkData.idDrink) setButtonStatus(false);
+  //     });
+  //   }
+  // }
+
+  function checkRecipeInProgress() {
+    const { inProgressRecipes } = doneAndInProgress;
+    if (inProgressRecipes.cocktails[idDrink]) setButtonName('Continue Recipe');
   }
 
   /* Check if the Recipe is in Progress. */
-  function checkRecipeInProgress() {
-    const prevState = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (prevState !== null) {
-      const drinkId = Object.keys(prevState.cocktails);
-      drinkId.forEach((progress) => {
-        if (progress === drinkData.idDrink) setButtonName('Continue Recipe');
-      });
-    }
-  }
+  // function checkRecipeInProgress() {
+  //   const prevState = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  //   if (prevState !== null) {
+  //     const drinkId = Object.keys(prevState.cocktails);
+  //     drinkId.forEach((progress) => {
+  //       if (progress === drinkData.idDrink) setButtonName('Continue Recipe');
+  //     });
+  //   }
+  // }
 
   useEffect(() => {
     checkRecipeInProgress();

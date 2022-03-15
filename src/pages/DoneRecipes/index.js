@@ -1,53 +1,30 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import CardRecipes from '../../components/CardRecipes.js';
 import Header from '../../components/Header';
 
-// const mockDoneRecipes = [
-//   {
-//     id: '52771',
-//     type: 'food',
-//     nationality: 'Italian',
-//     category: 'Vegetarian',
-//     alcoholicOrNot: '',
-//     name: 'Spicy Arrabiata Penne',
-//     image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
-//     doneDate: '23/06/2020',
-//     tags: ['Pasta', 'Curry'],
-//   },
-//   {
-//     id: '178319',
-//     type: 'drink',
-//     nationality: '',
-//     category: 'Cocktail',
-//     alcoholicOrNot: 'Alcoholic',
-//     name: 'Aquamarine',
-//     image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
-//     doneDate: '23/06/2020',
-//     tags: [],
-//   },
-// ];
-
 export default function DoneRecipes() {
-  const [backup, setBackup] = useState();
-  const [doneRecipes, setDoneRecipes] = useState(() => {
-    const doneRecipe = JSON.parse(localStorage.getItem('doneRecipes'));
-    if (!doneRecipe) {
-      return [];
-    }
-    setBackup(doneRecipe);
-    console.log(doneRecipe);
-    return doneRecipe;
-  });
+  const doneRecipes = useSelector(({ recipesReducer }) => recipesReducer.doneRecipes);
+  const [filteredList, setFilteredList] = useState(doneRecipes);
 
-  const clickButtonRecipe = ({ target }) => {
-    if (target.value === 'food') {
-      setDoneRecipes(backup.filter((item) => item.type === 'food'));
-    } else if (target.value === 'drink') {
-      setDoneRecipes(backup.filter((item) => item.type === 'drink'));
-    } else if (target.value === 'all') {
-      setDoneRecipes(backup);
-    }
+  const clickButtonRecipe = ({ target: { value } }) => {
+    const filter = {
+      food: () => setFilteredList(doneRecipes.filter(({ type }) => type === 'food')),
+      drink: () => setFilteredList(doneRecipes.filter(({ type }) => type === 'drink')),
+      all: () => setFilteredList(doneRecipes),
+    };
+    return filter[value]();
   };
+
+  // const clickButtonRecipe = ({ target }) => {
+  //   if (target.value === 'food') {
+  //     setRecipeListFilter(doneRecipes.filter((item) => item.type === 'food'));
+  //   } else if (target.value === 'drink') {
+  //     setRecipeListFilter(doneRecipes.filter((item) => item.type === 'drink'));
+  //   } else if (target.value === 'all') {
+  //     setRecipeListFilter(doneRecipes);
+  //   }
+  // };
 
   return (
     <div>
@@ -77,7 +54,7 @@ export default function DoneRecipes() {
         >
           Drinks
         </button>
-        {doneRecipes !== [] && doneRecipes.map((item, index) => (
+        {filteredList.map((item, index) => (
           <CardRecipes
             key={ item.name }
             recipe={ item }

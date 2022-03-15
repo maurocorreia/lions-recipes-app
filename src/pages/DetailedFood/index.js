@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import YouTube from 'react-youtube';
+import { useSelector } from 'react-redux';
 import { fetchFoodbyId, fetchRecommendedDrinks } from '../../services/DetailedItem';
 import RecommendedCard from '../../components/RecommendedCard';
 import DetailedFoodHeader from '../../components/DetailedFoodHeader';
@@ -9,6 +10,9 @@ export default function DetailedFood() {
   //  Globals
   const history = useHistory();
   const { idFood } = useParams();
+  const doneAndInProgress = useSelector(({ recipesReducer }) => ({
+    inProgressRecipes: recipesReducer.inProgressRecipes, done: recipesReducer.doneRecipes,
+  }));
 
   //  Fetch and Load.
   const [foodData, setFoodData] = useState({});
@@ -59,24 +63,34 @@ export default function DetailedFood() {
   const [buttonName, setButtonName] = useState('Start Recipe');
 
   /* Check if the Recipe is done. */
+  // function checkRecipeDone() {
+  //   const prevState = JSON.parse(localStorage.getItem('doneRecipes'));
+  //   if (prevState !== null) {
+  //     prevState.forEach((doneRecipe) => {
+  //       if (doneRecipe.id === foodData.idMeal) setButtonStatus(false);
+  //     });
+  //   }
+  // }
+
   function checkRecipeDone() {
-    const prevState = JSON.parse(localStorage.getItem('doneRecipes'));
-    if (prevState !== null) {
-      prevState.forEach((doneRecipe) => {
-        if (doneRecipe.id === foodData.idMeal) setButtonStatus(false);
-      });
-    }
+    const { done } = doneAndInProgress;
+    if (done.some(({ id }) => id === foodData.idMeal)) setButtonStatus(false);
   }
 
   /* Check if the Recipe is in Progress. */
+  // function checkRecipeInProgress() {
+  //   const prevState = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  //   if (prevState !== null) {
+  //     const mealId = Object.keys(prevState.meals);
+  //     mealId.forEach((progress) => {
+  //       if (progress === foodData.idMeal) setButtonName('Continue Recipe');
+  //     });
+  //   }
+  // }
+
   function checkRecipeInProgress() {
-    const prevState = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (prevState !== null) {
-      const mealId = Object.keys(prevState.meals);
-      mealId.forEach((progress) => {
-        if (progress === foodData.idMeal) setButtonName('Continue Recipe');
-      });
-    }
+    const { inProgressRecipes } = doneAndInProgress;
+    if (inProgressRecipes.meals[idFood]) setButtonName('Continue Recipe');
   }
 
   useEffect(() => {

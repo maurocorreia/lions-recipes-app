@@ -1,35 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import CardFavorites from '../../components/CardFavorites';
 import Header from '../../components/Header';
 
 export default function FavoriteRecipes() {
-  const [backup, setBackup] = useState();
-  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
-  const [clickFavorite, setClickFavorite] = useState(false);
+  const favoriteRecipe = useSelector(({ recipesReducer }) => (
+    recipesReducer.favoriteRecipes));
+  const [favoriteList, setFavoriteList] = useState(favoriteRecipe);
 
-  function UpdateFavoriteRecipes() {
-    const favoriteRecipe = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    if (!favoriteRecipe) {
-      setFavoriteRecipes([]);
-    }
-    setBackup(favoriteRecipe);
-    // console.log(doneRecipe);
-    setFavoriteRecipes(favoriteRecipe);
-  }
-
-  useEffect(() => {
-    UpdateFavoriteRecipes();
-  }, [clickFavorite]);
-
-  const clickButtonRecipe = ({ target }) => {
-    if (target.value === 'food') {
-      setFavoriteRecipes(backup.filter((item) => item.type === 'food'));
-    } else if (target.value === 'drink') {
-      setFavoriteRecipes(backup.filter((item) => item.type === 'drink'));
-    } else if (target.value === 'all') {
-      setFavoriteRecipes(backup);
-    }
+  const clickButtonRecipe = ({ target: { value } }) => {
+    const filter = {
+      food: () => setFavoriteList(favoriteRecipe.filter(({ type }) => type === 'food')),
+      drink: () => setFavoriteList(favoriteRecipe.filter(({ type }) => type === 'drink')),
+      all: () => setFavoriteList(favoriteRecipe),
+    };
+    return filter[value]();
   };
+
+  useEffect(() => setFavoriteList(favoriteRecipe), [favoriteRecipe]);
 
   return (
     <>
@@ -39,7 +27,7 @@ export default function FavoriteRecipes() {
           value="all"
           type="button"
           data-testid="filter-by-all-btn"
-          onClick={ (e) => clickButtonRecipe(e) }
+          onClick={ clickButtonRecipe }
         >
           All
         </button>
@@ -47,7 +35,7 @@ export default function FavoriteRecipes() {
           value="food"
           type="button"
           data-testid="filter-by-food-btn"
-          onClick={ (e) => clickButtonRecipe(e) }
+          onClick={ clickButtonRecipe }
         >
           Food
         </button>
@@ -55,16 +43,15 @@ export default function FavoriteRecipes() {
           value="drink"
           type="button"
           data-testid="filter-by-drink-btn"
-          onClick={ (e) => clickButtonRecipe(e) }
+          onClick={ clickButtonRecipe }
         >
           Drinks
         </button>
-        {favoriteRecipes && favoriteRecipes.map((item, index) => (
+        {favoriteList.map((item, index) => (
           <CardFavorites
             key={ item.name }
             recipe={ item }
             index={ index }
-            setClickButton={ setClickFavorite }
           />))}
       </div>
     </>
