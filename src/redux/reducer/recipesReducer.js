@@ -1,4 +1,3 @@
-/* eslint-disable react-func/max-lines-per-function */
 import { GET_RECIPES,
   SAVE_FAVORITE,
   REMOVE_FAVORITE,
@@ -32,10 +31,7 @@ const recipesReducer = (state = INITIAL_STATE, { type, payload }) => {
   case FINISH_RECIPE: {
     const addedDoneRecipes = [...state.doneRecipes, payload];
     localStorage.setItem('doneRecipes', JSON.stringify(addedDoneRecipes));
-    return {
-      ...state,
-      doneRecipes: addedDoneRecipes,
-    };
+    return { ...state, doneRecipes: addedDoneRecipes };
   }
   case START_RECIPE: {
     const { inProgressRecipes } = state;
@@ -43,10 +39,7 @@ const recipesReducer = (state = INITIAL_STATE, { type, payload }) => {
       ...inProgressRecipes,
       [payload.type]: { [payload.idRecipes]: [payload.ingredient] } };
     localStorage.setItem('inProgressRecipes', JSON.stringify(addedRecipeInProgress));
-    return {
-      ...state,
-      inProgressRecipes: addedRecipeInProgress,
-    };
+    return { ...state, inProgressRecipes: addedRecipeInProgress };
   }
   case ADD_INGREDIENT: {
     const { inProgressRecipes } = state;
@@ -56,25 +49,17 @@ const recipesReducer = (state = INITIAL_STATE, { type, payload }) => {
         [...inProgressRecipes[payload.type][payload.idRecipes], payload.ingredient] },
     };
     localStorage.setItem('inProgressRecipes', JSON.stringify(addIngredient));
-    return {
-      ...state,
-      inProgressRecipes: addIngredient,
-    };
+    return { ...state, inProgressRecipes: addIngredient };
   }
   case REMOVE_INGREDIENT: {
     const { inProgressRecipes } = state;
-    const removeIngredient = {
-      ...inProgressRecipes,
+    const removeIngredient = { ...inProgressRecipes,
       [payload.type]: { [payload.idRecipes]:
-        [...inProgressRecipes[payload.type][payload.idRecipes].filter(
-          (ingredient) => ingredient !== payload.ingredient,
-        )] },
+        [...inProgressRecipes[payload.type][payload.idRecipes]
+          .filter((ingredient) => ingredient !== payload.ingredient)] },
     };
     localStorage.setItem('inProgressRecipes', JSON.stringify(removeIngredient));
-    return {
-      ...state,
-      inProgressRecipes: removeIngredient,
-    };
+    return { ...state, inProgressRecipes: removeIngredient };
   }
   default:
     return state;
