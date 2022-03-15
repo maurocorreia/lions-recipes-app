@@ -1,29 +1,18 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import shareIcon from '../../images/shareIcon.svg';
-import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
+import { removeFavorite } from '../../redux/actions';
 
 const copy = require('clipboard-copy');
 
-export default function CardRecipes({ recipe, index, setClickButton }) {
+export default function CardRecipes({ recipe, index }) {
   const [copied, setCopied] = useState(false);
-  const [isFavorited, setIsFavorite] = useState(true);
+  const dispatch = useDispatch();
 
   const { push } = useHistory();
-
-  /*          FAVORITE BUTTON                */
-
-  // Unfavoring Item.
-  function unfavButton() {
-    setIsFavorite((prevState) => !prevState);
-    const prevState = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    const newState = prevState.filter((element) => element.id !== recipe.id);
-    localStorage.setItem('favoriteRecipes',
-      JSON.stringify([...newState]));
-    setClickButton((state) => !state);
-  }
 
   function copyLink() {
     copy(`http://localhost:3000/foods/${recipe.id}`);
@@ -43,10 +32,10 @@ export default function CardRecipes({ recipe, index, setClickButton }) {
         />
       </button>
       {copied && <p>Link copied!</p>}
-      <button onClick={ () => unfavButton() } type="button">
+      <button onClick={ () => dispatch(removeFavorite(recipe.id)) } type="button">
         <img
           data-testid={ `${index}-horizontal-favorite-btn` }
-          src={ isFavorited ? blackHeartIcon : whiteHeartIcon }
+          src={ blackHeartIcon }
           alt="favIcon"
         />
       </button>

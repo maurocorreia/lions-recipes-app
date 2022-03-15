@@ -1,27 +1,30 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import CardRecipes from '../../components/CardRecipes.js';
 import Header from '../../components/Header';
 
 export default function DoneRecipes() {
-  const [backup, setBackup] = useState();
-  const [doneRecipes, setDoneRecipes] = useState(() => {
-    const doneRecipe = JSON.parse(localStorage.getItem('doneRecipes'));
-    if (!doneRecipe) {
-      return [];
-    }
-    setBackup(doneRecipe);
-    return doneRecipe;
-  });
+  const doneRecipes = useSelector(({ recipesReducer }) => recipesReducer.doneRecipes);
+  const [filteredList, setFilteredList] = useState(doneRecipes);
 
-  const clickButtonRecipe = ({ target }) => {
-    if (target.value === 'food') {
-      setDoneRecipes(backup.filter((item) => item.type === 'food'));
-    } else if (target.value === 'drink') {
-      setDoneRecipes(backup.filter((item) => item.type === 'drink'));
-    } else if (target.value === 'all') {
-      setDoneRecipes(backup);
-    }
+  const clickButtonRecipe = ({ target: { value } }) => {
+    const filter = {
+      food: () => setFilteredList(doneRecipes.filter(({ type }) => type === 'food')),
+      drink: () => setFilteredList(doneRecipes.filter(({ type }) => type === 'drink')),
+      all: () => setFilteredList(doneRecipes),
+    };
+    return filter[value]();
   };
+
+  // const clickButtonRecipe = ({ target }) => {
+  //   if (target.value === 'food') {
+  //     setRecipeListFilter(doneRecipes.filter((item) => item.type === 'food'));
+  //   } else if (target.value === 'drink') {
+  //     setRecipeListFilter(doneRecipes.filter((item) => item.type === 'drink'));
+  //   } else if (target.value === 'all') {
+  //     setRecipeListFilter(doneRecipes);
+  //   }
+  // };
 
   return (
     <div>
@@ -51,7 +54,7 @@ export default function DoneRecipes() {
         >
           Drinks
         </button>
-        {doneRecipes !== [] && doneRecipes.map((item, index) => (
+        {filteredList.map((item, index) => (
           <CardRecipes
             key={ item.name }
             recipe={ item }

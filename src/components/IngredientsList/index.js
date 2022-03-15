@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { recipeEnd, recipeInProgress } from '../../redux/actions';
 
 function IngredientsList({ ingredients, measure, idRecipes, type, data }) {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const recipesInProgress = useSelector(({ recipesReducer }) => (
+    recipesReducer.inProgressRecipes));
 
-  const [checkedInput, setCheckedInput] = useState(() => {
-    const prevLocalStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (!prevLocalStorage[type][idRecipes]) return [];
-    const { [type]: { [idRecipes]: ingredientsList } } = prevLocalStorage;
-    return ingredientsList;
-  });
+  // const [checkedInput, setCheckedInput] = useState(() => {
+  //   const prevLocalStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  //   if (!prevLocalStorage[type][idRecipes]) return [];
+  //   const { [type]: { [idRecipes]: ingredientsList } } = prevLocalStorage;
+  //   return ingredientsList;
+  // });
 
-  function addRecipeInLocalStorage(ingredient, prevLocalStorage) {
-    setCheckedInput([ingredient]);
-    localStorage.setItem('inProgressRecipes', JSON.stringify(
-      { ...prevLocalStorage, [type]: { [idRecipes]: [ingredient] } },
-    ));
-  }
+  // function addRecipeInLocalStorage(ingredient, prevLocalStorage) {
+  //   setCheckedInput([ingredient]);
+  //   localStorage.setItem('inProgressRecipes', JSON.stringify(
+  //     { ...prevLocalStorage, [type]: { [idRecipes]: [ingredient] } },
+  //   ));
+  // }
 
   function addIngredientsOfRecipe(ingredient, ingredientsList, prevLocalStorage) {
     setCheckedInput((prev) => [...prev, ingredient]);
@@ -39,9 +44,10 @@ function IngredientsList({ ingredients, measure, idRecipes, type, data }) {
   }
 
   function handleChange(ingredient) {
-    const prevLocalStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (!prevLocalStorage[type][idRecipes]) {
-      addRecipeInLocalStorage(ingredient, prevLocalStorage);
+    // const prevLocalStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (!recipesInProgress[type][idRecipes]) {
+      dispatch(recipeInProgress({ type, idRecipes, ingredient }));
+      // addRecipeInLocalStorage(ingredient, prevLocalStorage);
     } else {
       const { [type]: { [idRecipes]: ingredientsList } } = prevLocalStorage;
       if (!ingredientsList.includes(ingredient)) {
@@ -64,15 +70,15 @@ function IngredientsList({ ingredients, measure, idRecipes, type, data }) {
       doneDate: new Date().toDateString(),
       tags: data.strTags ? data.strTags.split(',') : [],
     };
-
-    const prevStore = JSON.parse(localStorage.getItem('doneRecipes'));
-    if (prevStore) {
-      localStorage.setItem('doneRecipes', JSON.stringify(
-        [...prevStore, doneRecipe],
-      ));
-    } else {
-      localStorage.setItem('doneRecipes', JSON.stringify([doneRecipe]));
-    }
+    dipatch(recipeEnd(doneRecipe));
+    // const prevStore = JSON.parse(localStorage.getItem('doneRecipes'));
+    // if (prevStore) {
+    //   localStorage.setItem('doneRecipes', JSON.stringify(
+    //     [...prevStore, doneRecipe],
+    //   ));
+    // } else {
+    //   localStorage.setItem('doneRecipes', JSON.stringify([doneRecipe]));
+    // }
     history.push('/done-recipes');
   }
 
@@ -85,7 +91,7 @@ function IngredientsList({ ingredients, measure, idRecipes, type, data }) {
               key={ index }
             >
               <label
-                style={ checkedInput.includes(ingredient)
+                style={ recipesInProgress.includes(ingredient)
                   ? { textDecoration: 'line-through' }
                   : { textDecoration: 'none' } }
                 data-testid={ `${index}-ingredient-step` }
@@ -94,7 +100,7 @@ function IngredientsList({ ingredients, measure, idRecipes, type, data }) {
                 <input
                   id={ ingredient }
                   type="checkbox"
-                  checked={ checkedInput.includes(ingredient) }
+                  checked={ recipesInProgress.includes(ingredient) }
                   onChange={ () => handleChange(ingredient) }
                 />
                 {`${ingredient} — ${measure[index]}`}
@@ -111,7 +117,7 @@ function IngredientsList({ ingredients, measure, idRecipes, type, data }) {
           className="finish-button"
           aria-label="Finish Recipe"
           data-testid="finish-recipe-btn"
-          disabled={ checkedInput.length !== ingredients.length }
+          // disabled={ checkedInput.length !== ingredients.length }
           type="button"
           onClick={ handleClick }
         >
