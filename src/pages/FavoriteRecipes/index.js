@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import CardFavorites from '../../components/CardFavorites';
 import Header from '../../components/Header';
@@ -6,7 +6,6 @@ import Header from '../../components/Header';
 export default function FavoriteRecipes() {
   const favoriteRecipe = useSelector(({ recipesReducer }) => (
     recipesReducer.favoriteRecipes));
-
   const [favoriteList, setFavoriteList] = useState(favoriteRecipe);
 
   const clickButtonRecipe = ({ target: { value } }) => {
@@ -17,6 +16,8 @@ export default function FavoriteRecipes() {
     };
     return filter[value]();
   };
+
+  useEffect(() => setFavoriteList(favoriteRecipe), [favoriteRecipe]);
 
   return (
     <>
@@ -46,7 +47,7 @@ export default function FavoriteRecipes() {
         >
           Drinks
         </button>
-        {favoriteList.length !== 0 && favoriteList.map((item, index) => (
+        {favoriteList.map((item, index) => (
           <CardFavorites
             key={ item.name }
             recipe={ item }

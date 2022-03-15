@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,18 +14,20 @@ export default function DetailedDrinkHeader({ data }) {
   const { idDrink } = useParams();
   const [copied, setCopied] = useState(false);
   const dispatch = useDispatch();
+  const favoriteRecipe = useSelector(({ recipesReducer }) => (
+    recipesReducer.favoriteRecipes));
+  console.log(data);
   function copyLink() {
     copy(`http://localhost:3000/drinks/${idDrink}`);
     setCopied(true);
   }
-  const favoriteRecipe = useSelector(({ recipesReducer }) => (
-    recipesReducer.favoriteRecipes));
-
+  // console.log(favoriteRecipe);
   /*          FAVORITE BUTTON                */
-  const [isFavorited, setIsFavorite] = useState(favoriteRecipe.some(
-    ({ id }) => id !== data.idDrink,
-  ));
+  const [isFavorited, setIsFavorite] = useState(false);
 
+  useEffect(() => {
+    setIsFavorite(favoriteRecipe.some(({ id }) => id === data.idDrink));
+  }, [data.idDrink, favoriteRecipe]);
   // // Favoring Item.
   // function favButton() {
   //   setIsFavorite((prevState) => !prevState);
@@ -61,6 +63,7 @@ export default function DetailedDrinkHeader({ data }) {
     else dispatch(removeFavorite(data.idDrink));
     setIsFavorite((prevState) => !prevState);
   }
+
   // // Unfavoring Item.
   // function unfavButton() {
   //   setIsFavorite((prevState) => !prevState);

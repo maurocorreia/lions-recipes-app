@@ -1,8 +1,11 @@
+/* eslint-disable react-func/max-lines-per-function */
 import { GET_RECIPES,
   SAVE_FAVORITE,
   REMOVE_FAVORITE,
   START_RECIPE,
-  FINISH_RECIPE } from '../actions';
+  FINISH_RECIPE,
+  ADD_INGREDIENT,
+  REMOVE_INGREDIENT } from '../actions';
 
 const INITIAL_STATE = {
   recipes: [],
@@ -24,7 +27,7 @@ const recipesReducer = (state = INITIAL_STATE, { type, payload }) => {
   case REMOVE_FAVORITE: {
     const removeFavorite = state.favoriteRecipes.filter(({ id }) => id !== payload);
     localStorage.setItem('favoriteRecipes', JSON.stringify(removeFavorite));
-    return { ...state, favoriteRecipes: removeFavorite };
+    return { ...state, favoriteRecipes: [...removeFavorite] };
   }
   case FINISH_RECIPE: {
     const addedDoneRecipes = [...state.doneRecipes, payload];
@@ -38,13 +41,39 @@ const recipesReducer = (state = INITIAL_STATE, { type, payload }) => {
     const { inProgressRecipes } = state;
     const addedRecipeInProgress = {
       ...inProgressRecipes,
-      [payload.type]:
-      { [payload.idRecipes]: [...inProgressRecipes[type].idRecipes, payload.ingredient] },
-    };
+      [payload.type]: { [payload.idRecipes]: [payload.ingredient] } };
     localStorage.setItem('inProgressRecipes', JSON.stringify(addedRecipeInProgress));
     return {
       ...state,
       inProgressRecipes: addedRecipeInProgress,
+    };
+  }
+  case ADD_INGREDIENT: {
+    const { inProgressRecipes } = state;
+    const addIngredient = {
+      ...inProgressRecipes,
+      [payload.type]: { [payload.idRecipes]:
+        [...inProgressRecipes[payload.type][payload.idRecipes], payload.ingredient] },
+    };
+    localStorage.setItem('inProgressRecipes', JSON.stringify(addIngredient));
+    return {
+      ...state,
+      inProgressRecipes: addIngredient,
+    };
+  }
+  case REMOVE_INGREDIENT: {
+    const { inProgressRecipes } = state;
+    const removeIngredient = {
+      ...inProgressRecipes,
+      [payload.type]: { [payload.idRecipes]:
+        [...inProgressRecipes[payload.type][payload.idRecipes].filter(
+          (ingredient) => ingredient !== payload.ingredient,
+        )] },
+    };
+    localStorage.setItem('inProgressRecipes', JSON.stringify(removeIngredient));
+    return {
+      ...state,
+      inProgressRecipes: removeIngredient,
     };
   }
   default:
