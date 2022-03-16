@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap");
+
+.subtitle {
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: 20px;
+  background-color: #f79e07;
+  padding: 15px 0px 15px 30px;
+  color: #be3d08;
+}
+
+.ingredientList,
+.instructions {
+  font-family: "Montserrat Alternates", sans-serif;
+  color: #f79e07;
+  font-size: 17px;
+}
+
+.instructions {
+  margin: 1em;
+}
+
+.startButton {
+    font-size: 20px;
+    font-family: "Montserrat Alternates", sans-serif;
+    padding: 0.3em 0.9em 0.3em 0.9em;
+    background: white;
+	color: #f79e07;
+	border: none;
+    border-radius: 5px;
+	outline: inherit;
+}
+
+.startWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    position: fixed;
+    height: 70px;
+    width: 100vw;
+    background-color: #f79e07;
+}

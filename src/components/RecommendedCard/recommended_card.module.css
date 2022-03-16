@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap');
+
+.recomendationImage {
+  width: 40vw;
+  margin: 5vw;
+  border-radius: 350px;
+}
+
+.recomendationCard{
+  text-align: center;
+  font-family: 'Montserrat Alternates', sans-serif;
+  color:#BE3D08;
+  margin-bottom: 2em;
+}
+.recomendationCard h1{
+  font-size: 22px;
+}
+
+.recomendationCard h2{
+  font-size: 15px;
+}
