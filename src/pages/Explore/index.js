@@ -2,11 +2,12 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import style from './style.module.css';
 
 export default function Explore() {
   const history = useHistory();
   return (
-    <div>
+    <div className={ style.container__explore }>
       <Header title="Explore" />
       <button
         type="button"
