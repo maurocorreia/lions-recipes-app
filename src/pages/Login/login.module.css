@@ -29,7 +29,7 @@
   height: 300px;
 } 
 
-input {
+.login__input-password, .login__input-email {
   background-color:  #be3d08 ;
   border: 1px solid #ACC4CC;
   border-radius: 5px;
@@ -42,7 +42,7 @@ input {
   width: 300px;
 }
 
-input::placeholder {
+.login__input-password::placeholder, .login__input-email::placeholder {
   color: #ACC4CC;
 }
 

@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
+
+
+.container__header-tela-principal {
+  align-items: center;
+  background-color: #f79e07;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.74);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6px 0 7px;
+}
+
+.container__header-explorar {
+  align-items: center;
+  background-color: #f79e07;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.74);
+  display: flex;
+  gap: 45px;
+  padding: 0 5px 0 7px;
+}
+
+.container__header-explore-foods {
+  align-items: center;
+  background-color: #f79e07;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.74);
+  display: flex;
+  gap: 15px;
+  padding: 0 5px 0 7px;
+}
+
+.container__header-explore-ingredients {
+  align-items: center;
+  background-color: #f79e07;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.74);
+  display: flex;
+  gap: 50px;
+  padding: 0 5px 0 7px;
+}
+
+.container__header-explorar-nationalites {
+  align-items: center;
+  background-color: #f79e07;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.74);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6px 0 7px;
+  text-align: center;
+}
+
+.container__header-profile {
+  align-items: center;
+  background-color: #f79e07;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.74);
+  display: flex;
+  gap: 45px;
+  padding: 0 5px 0 7px;
+}
+
+.container__button-profile, .container__search {
+  padding-top: 10px;
+  width: 60px;
+}
+
+.button-profile {
+  width: 100%
+}
+
+.container__title h1 {
+  color: #be3d08;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.109));
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 40px;
+}
+
+.search__input {
+  margin-left: 5px;
+  width: 60%;
+}

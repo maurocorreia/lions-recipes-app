@@ -9,7 +9,12 @@ export default function Profile() {
 
   return (
     <>
-      <Header title="Profile" />
+      <Header
+        title="Profile"
+        imgSize="51"
+        fontSize="40"
+        local="container__header-profile"
+      />
       <main>
         <h1 data-testid="profile-email">{email && email.email}</h1>
         <button

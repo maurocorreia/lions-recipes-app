@@ -31,7 +31,12 @@ export default function ExploreFoodsIngredients() {
 
   return (
     <>
-      <Header title="Explore Ingredients" />
+      <Header
+        imgSize="51"
+        fontSize="28"
+        title="Explore Ingredients"
+        local="container__header-explore-ingredients"
+      />
       {foodIngredients.length > 0 ? foodIngredients.map((ig, index) => (
         <button
           name={ ig.strIngredient }

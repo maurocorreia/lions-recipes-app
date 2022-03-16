@@ -14,7 +14,12 @@ export default function ExploreDrinks() {
 
   return (
     <div>
-      <Header title="Explore Drinks" />
+      <Header
+        imgSize="51"
+        title="Explore Drinks"
+        fontSize="35"
+        local="container__header-explore-foods"
+      />
       <button
         type="button"
         data-testid="explore-by-ingredient"
