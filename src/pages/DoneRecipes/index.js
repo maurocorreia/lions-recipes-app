@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import CardRecipes from '../../components/CardRecipes.js';
 import Header from '../../components/Header';
+import style from './style.module.css';
 
 export default function DoneRecipes() {
   const doneRecipes = useSelector(({ recipesReducer }) => recipesReducer.doneRecipes);
@@ -27,9 +28,9 @@ export default function DoneRecipes() {
   // };
 
   return (
-    <div>
+    <div className={ style.container__done }>
       <Header title="Done Recipes" />
-      <div>
+      <div className={ style.container__done_all }>
         <button
           value="all"
           type="button"
