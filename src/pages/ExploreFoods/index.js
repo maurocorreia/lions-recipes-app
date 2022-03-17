@@ -16,7 +16,7 @@ export default function ExploreFoods() {
   return (
     <div className={ style.container_food__explore }>
       <Header
-        imgSize="51"
+        imgSize="52"
         title="Explore Foods"
         fontSize="35"
         local="container__header-explore-foods"

@@ -29,9 +29,15 @@ export default function DoneRecipes() {
 
   return (
     <div className={ style.container__done }>
-      <Header title="Done Recipes" />
+      <Header
+        imgSize="52"
+        title="Done Recipes"
+        fontSize="32"
+        local="container__header-doneRecipes"
+      />
       <div className={ style.container__done_all }>
         <button
+          className={ style.button_all }
           value="all"
           type="button"
           data-testid="filter-by-all-btn"
@@ -40,6 +46,7 @@ export default function DoneRecipes() {
           All
         </button>
         <button
+          className={ style.button_all }
           value="food"
           type="button"
           data-testid="filter-by-food-btn"
@@ -48,6 +55,7 @@ export default function DoneRecipes() {
           Food
         </button>
         <button
+          className={ style.button_all }
           value="drink"
           type="button"
           data-testid="filter-by-drink-btn"
@@ -55,12 +63,14 @@ export default function DoneRecipes() {
         >
           Drinks
         </button>
-        {filteredList.map((item, index) => (
-          <CardRecipes
-            key={ item.name }
-            recipe={ item }
-            index={ index }
-          />))}
+        <div className={ style.container_cards }>
+          {filteredList.map((item, index) => (
+            <CardRecipes
+              key={ item.name }
+              recipe={ item }
+              index={ index }
+            />))}
+        </div>
       </div>
     </div>
   );

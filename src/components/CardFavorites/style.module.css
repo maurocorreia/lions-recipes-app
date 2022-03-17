@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap') ;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
 
 .container__favCard {
   background-color: white;
@@ -14,17 +14,19 @@
 }
 
 .container__favCard button {
-  margin-bottom: 5px;
-  margin-left: 20px;
-  margin-top: 5px;
-  width: 30%;
+  background-color: #be3d08;
+  border: 1px solid #acc4cc;
+  border-radius: 5px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.274);
+  padding: 0 10px;
+  width: 60px;
+  height: 40px;
 }
 
 .container__favCard h4 {
-  color: #be3d08;
+  color: #ff5613;
   font-family: Montserrat Alternates , sans-serif;
   font-size: 15px;
-  margin-top: 5px;
   padding: 0 10px;
 }
 
@@ -33,7 +35,23 @@
   font-family: Montserrat Alternates , sans-serif;
   font-size: 30px;
   font-weight: 600;
-  margin-top: 5px;
   padding: 0 10px;
 }
 
+.container__buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 10px;
+} 
+
+.container__buttons p{
+  margin: 0;
+}
+
+.container__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}

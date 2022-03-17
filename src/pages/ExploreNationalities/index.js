@@ -42,7 +42,7 @@ export default function ExploreNationalities() {
     <section className={ style.container__nationality }>
       <Header
         fontSize="28"
-        imgSize="51"
+        imgSize="52"
         local="container__header-explorar-nationalites"
         title="Explore Nationalities"
         isSearch

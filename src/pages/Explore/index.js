@@ -10,7 +10,7 @@ export default function Explore() {
     <section className={ style.container__explore }>
       <Header
         title="Explore"
-        imgSize="51"
+        imgSize="52"
         fontSize="40"
         local="container__header-explorar"
       />

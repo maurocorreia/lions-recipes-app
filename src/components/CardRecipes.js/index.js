@@ -14,7 +14,7 @@ export default function CardRecipes({ recipe, index }) {
   }
 
   return (
-    <>
+    <section>
       <button
         type="button"
         onClick={ () => copyLink() }
@@ -61,7 +61,7 @@ export default function CardRecipes({ recipe, index }) {
             <ol key={ tag } data-testid={ `${index}-${tag}-horizontal-tag` }>{tag}</ol>))}
         </ul>
       )}
-    </>
+    </section>
   );
 }
 

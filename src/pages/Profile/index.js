@@ -12,7 +12,7 @@ export default function Profile() {
     <>
       <Header
         title="Profile"
-        imgSize="51"
+        imgSize="52"
         fontSize="40"
         local="container__header-profile"
       />

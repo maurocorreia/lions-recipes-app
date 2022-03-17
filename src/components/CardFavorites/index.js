@@ -22,27 +22,29 @@ export default function CardRecipes({ recipe, index }) {
 
   return (
     <section className={ style.container__favCard }>
-      <button
-        type="button"
-        onClick={ () => copyLink() }
-        data-testid={ `${index}-horizontal-share-btn` }
-        src={ shareIcon }
-        alt="IconShare"
-      >
-        <img
+      <div className={ style.container__buttons }>
+        {copied && <p>Link copied!</p>}
+        <button
+          type="button"
+          onClick={ () => copyLink() }
           data-testid={ `${index}-horizontal-share-btn` }
           src={ shareIcon }
           alt="IconShare"
-        />
-      </button>
-      {copied && <p>Link copied!</p>}
-      <button onClick={ () => dispatch(removeFavorite(recipe.id)) } type="button">
-        <img
-          data-testid={ `${index}-horizontal-favorite-btn` }
-          src={ blackHeartIcon }
-          alt="favIcon"
-        />
-      </button>
+        >
+          <img
+            data-testid={ `${index}-horizontal-share-btn` }
+            src={ shareIcon }
+            alt="IconShare"
+          />
+        </button>
+        <button onClick={ () => dispatch(removeFavorite(recipe.id)) } type="button">
+          <img
+            data-testid={ `${index}-horizontal-favorite-btn` }
+            src={ blackHeartIcon }
+            alt="favIcon"
+          />
+        </button>
+      </div>
       <input
         type="image"
         onClick={ () => push(`${recipe.type}s/${recipe.id}`) }
@@ -59,16 +61,16 @@ export default function CardRecipes({ recipe, index }) {
           </h4>
         )}
       </div>
-      <div>
+      <div className={ style.container__info }>
         {recipe.alcoholicOrNot === 'Alcoholic' && (
-          <p data-testid={ `${index}-horizontal-top-text` }>
+          <h4 data-testid={ `${index}-horizontal-top-text` }>
             { recipe.alcoholicOrNot }
-          </p>
+          </h4>
         )}
+        <Link to={ `${recipe.type}s/${recipe.id}` }>
+          <h3 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h3>
+        </Link>
       </div>
-      <Link to={ `${recipe.type}s/${recipe.id}` }>
-        <h3 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h3>
-      </Link>
     </section>
   );
 }

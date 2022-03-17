@@ -39,7 +39,7 @@ export default function Drinks() {
   return (
     <section style={ { backgroundColor: '#f0f0f0' } }>
       <Header
-        imgSize="51"
+        imgSize="52"
         title="Drinks"
         isSearch
         local="container__header-tela-principal"
