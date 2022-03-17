@@ -1,3 +1,20 @@
-.card {
-  max-width: 50px;
+.container__cards {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.253);
+  margin-bottom: 10px;
+  overflow: hidden;
+  width: 200px;
+}
+
+.container__image img{
+  width: 100%;
+}
+
+.container__name h4 {
+  color: #be3d08;
+  font-family: Montserrat Alternates , sans-serif;
+  font-size: 20px;
+  margin-top: 5px;
+  padding: 0 10px;
 }
