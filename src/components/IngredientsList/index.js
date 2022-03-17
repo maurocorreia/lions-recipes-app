@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { recipeEnd,
   startRecipe, addIngredient, removeIngredient } from '../../redux/actions';
+import style from './ingredient_list.module.css';
 
 function IngredientsList({ ingredients, measure, idRecipes, type, data }) {
   const history = useHistory();
@@ -92,7 +93,8 @@ function IngredientsList({ ingredients, measure, idRecipes, type, data }) {
   return (
     <section>
       <section>
-        <ul>
+        <h1 className={ style.subtitle }> Ingredients </h1>
+        <ul className={ style.ingredientList }>
           {ingredients !== [] && ingredients.map((ingredient, index) => (
             <li
               key={ index }
@@ -103,12 +105,14 @@ function IngredientsList({ ingredients, measure, idRecipes, type, data }) {
                   : { textDecoration: 'none' } }
                 data-testid={ `${index}-ingredient-step` }
                 htmlFor={ ingredient }
+                className={ style.ingredientItem }
               >
                 <input
                   id={ ingredient }
                   type="checkbox"
                   checked={ checkedInput.includes(ingredient) }
                   onChange={ () => handleChange(ingredient) }
+                  className={ style.checkbox }
                 />
                 {`${ingredient} — ${measure[index]}`}
               </label>
@@ -117,11 +121,17 @@ function IngredientsList({ ingredients, measure, idRecipes, type, data }) {
         </ul>
       </section>
       <section>
-        <p data-testid="instructions">{data.strInstructions}</p>
+        <h1 className={ style.subtitle }> Instructions </h1>
+        <p
+          className={ style.instructions }
+          data-testid="instructions"
+        >
+          {data.strInstructions}
+        </p>
       </section>
-      <section>
+      <section className={ style.finishWrapper }>
         <button
-          className="finish-button"
+          className={ style.finishButton }
           aria-label="Finish Recipe"
           data-testid="finish-recipe-btn"
           disabled={ checkedInput.length !== ingredients.length }

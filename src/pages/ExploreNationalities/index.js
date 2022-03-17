@@ -39,7 +39,13 @@ export default function ExploreNationalities() {
 
   return (
     <>
-      <Header title="Explore Nationalities" isSearch />
+      <Header
+        fontSize="28"
+        imgSize="51"
+        local="container__header-explorar-nationalites"
+        title="Explore Nationalities"
+        isSearch
+      />
 
       <select
         name="nations"

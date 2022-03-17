@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap');
+
+.body{
+    font-family: 'Montserrat Alternates', sans-serif;
+    color:#BE3D08;
+}
+
+.imgDiv{
+    width: 100vw;
+    height: 200px;
+    overflow: hidden;
+}
+
+.drinkImage{
+    width: 100vw;
+}
+
+.menuWrapper{
+    margin: 10px 5px 5px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.infoWrapper h1{
+    font-size: 22px;
+}
+
+.infoWrapper h2{
+    font-size: 15px;
+}
+
+.buttonWrapper button{
+    margin: 10px;
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	outline: inherit;
+}
+.buttonWrapper button img{
+    width: 26px;
+    height: 26px;
+}
+
+.shareMessege{
+    width: 100vw;
+    text-align: center;
+}

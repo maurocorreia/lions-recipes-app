@@ -75,12 +75,7 @@
 
 .recomendation-wrap {
   display: flex;
-  gap: 10px;
   overflow-x: scroll;
-}
-
-.recomendation-image {
-  width: 50vw;
 }
 
 .start-button {

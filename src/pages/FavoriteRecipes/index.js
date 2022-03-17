@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import CardFavorites from '../../components/CardFavorites';
 import Header from '../../components/Header';
+import style from './style.module.css';
 
 export default function FavoriteRecipes() {
   const favoriteRecipe = useSelector(({ recipesReducer }) => (
@@ -22,7 +23,7 @@ export default function FavoriteRecipes() {
   return (
     <>
       <Header title="Favorite Recipes" />
-      <div>
+      <div className={ style.container__favorites }>
         <button
           value="all"
           type="button"

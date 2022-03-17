@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap");
+
+.ingredientList{
+    list-style: none;
+    padding: 0;
+}
+
+.ingredientItem{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: "Montserrat Alternates", sans-serif;
+    color: #f79e07;
+    font-size: 17px;
+}
+
+.checkbox{
+    width: 4vw;
+    margin: 0 1em 0 1em;
+    filter: invert(20%);
+}
+
+.checkbox:checked{
+    filter: invert(100%) hue-rotate(1deg) brightness(1);
+}
+
+.subtitle{
+    font-family: "Montserrat Alternates", sans-serif;
+  font-size: 20px;
+  background-color: #f79e07;
+  padding: 15px 0px 15px 30px;
+  color: #be3d08;
+}
+
+.finishButton {
+    font-size: 20px;
+    font-family: "Montserrat Alternates", sans-serif;
+    padding: 0.3em 0.9em 0.3em 0.9em;
+    background: white;
+	color: #f79e07;
+	border: none;
+    border-radius: 5px;
+	outline: inherit;
+}
+
+.finishButton:disabled{
+    font-size: 20px;
+    font-family: "Montserrat Alternates", sans-serif;
+    padding: 0.3em 0.9em 0.3em 0.9em;
+    background: rgb(230, 230, 230);
+	color: #aaaaaa;
+	border: none;
+    border-radius: 5px;
+	outline: inherit;
+}
+
+.finishWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    width: 100vw;
+    background-color: #f79e07;
+}
+
+.instructions{
+    font-family: "Montserrat Alternates", sans-serif;
+    color: #f79e07;
+    font-size: 17px;
+    margin: 1em 1.5em 1em 1.5em;
+}

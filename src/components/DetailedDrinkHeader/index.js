@@ -6,6 +6,7 @@ import shareIcon from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import { removeFavorite, saveFavorite } from '../../redux/actions';
+import style from './detailed_drink_header.module.css';
 
 const copy = require('clipboard-copy');
 
@@ -94,23 +95,39 @@ export default function DetailedDrinkHeader({ data }) {
   // }, [data]);
 
   return (
-    <header>
-      <img data-testid="recipe-photo" src={ data.strDrinkThumb } alt="foodImage" />
-      <h1 data-testid="recipe-title">{data.strDrink}</h1>
-      <h2 data-testid="recipe-category">{data.strAlcoholic}</h2>
-      <button type="button" data-testid="share-btn" onClick={ () => copyLink() }>
-        <img src={ shareIcon } alt="shareIcon" />
-      </button>
-      <button onClick={ addOrRemoveFavorite } type="button">
+    <header className={ style.body }>
+      <div className={ style.imgDiv }>
         <img
-          data-testid="favorite-btn"
-          src={ isFavorited ? blackHeartIcon : whiteHeartIcon }
-          alt="favIcon"
+          className={ style.drinkImage }
+          data-testid="recipe-photo"
+          src={ data.strDrinkThumb }
+          alt="foodImage"
         />
-      </button>
+      </div>
 
-      {copied && <p>Link copied!</p>}
+      <div className={ style.menuWrapper }>
+        <div className={ style.infoWrapper }>
+          <h1 data-testid="recipe-title">{data.strDrink}</h1>
+          <h2 data-testid="recipe-category">{data.strAlcoholic}</h2>
+        </div>
 
+        <div className={ style.buttonWrapper }>
+          <button type="button" data-testid="share-btn" onClick={ () => copyLink() }>
+            <img src={ shareIcon } alt="shareIcon" />
+          </button>
+          <button onClick={ addOrRemoveFavorite } type="button">
+            <img
+              data-testid="favorite-btn"
+              src={ isFavorited ? blackHeartIcon : whiteHeartIcon }
+              alt="favIcon"
+            />
+          </button>
+        </div>
+
+      </div>
+      <div className={ style.shareMessege }>
+        {copied && <p>Link copied!</p>}
+      </div>
     </header>
   );
 }

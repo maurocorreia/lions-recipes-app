@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
+
+
+.container__search {
+  align-items: center;
+  animation: teste 0.1s linear;
+  background-color: #f79e07;
+  box-shadow: 0 8px 5px rgba(0, 0, 0, 0.171);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.container__filters {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.container__filters input {
+  margin-right: 5px;
+
+}
+
+.container__search--input input::placeholder {
+  color: #97707d;
+  padding-inline-start: 10px;
+}
+
+.container__search--input button {
+  background-color: #be3d08;
+  border: 1px solid #acc4cc;
+  border-radius: 5px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.274);
+  color: #acc4cc;
+  height: 35px;
+  margin-left: 10px;
+  padding: 0 10px;
+}
+
+.container__search--input input {
+  border: 1px solid #acc4cc;
+  border-radius: 5px;
+  color: #acc4cc;
+  height: 35px;
+  outline: none;
+}
+
+.container__filters label {
+  color: #97707d;
+  font-family: Montserrat Alternates , sans-serif;
+}
+
+@keyframes teste {
+  from 
+  {
+    height: 0;
+  }
+  to 
+  {
+    height: 95px;
+  }
+}
