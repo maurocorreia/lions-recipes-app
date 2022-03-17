@@ -7,7 +7,12 @@ export default function Explore() {
   const history = useHistory();
   return (
     <div>
-      <Header title="Explore" />
+      <Header
+        title="Explore"
+        imgSize="51"
+        fontSize="40"
+        local="container__header-explorar"
+      />
       <button
         type="button"
         data-testid="explore-foods"

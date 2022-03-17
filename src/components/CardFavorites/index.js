@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import shareIcon from '../../images/shareIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import { removeFavorite } from '../../redux/actions';
+import style from './style.module.css';
 
 const copy = require('clipboard-copy');
 
@@ -20,10 +21,13 @@ export default function CardRecipes({ recipe, index }) {
   }
 
   return (
-    <>
+    <section className={ style.container__favCard }>
       <button
         type="button"
         onClick={ () => copyLink() }
+        data-testid={ `${index}-horizontal-share-btn` }
+        src={ shareIcon }
+        alt="IconShare"
       >
         <img
           data-testid={ `${index}-horizontal-share-btn` }
@@ -65,7 +69,7 @@ export default function CardRecipes({ recipe, index }) {
       <Link to={ `${recipe.type}s/${recipe.id}` }>
         <h3 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h3>
       </Link>
-    </>
+    </section>
   );
 }
 

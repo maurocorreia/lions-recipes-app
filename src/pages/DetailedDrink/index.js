@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { fetchDrinkbyId, fetchRecommendedFoods } from '../../services/DetailedItem';
 import RecommendedCard from '../../components/RecommendedCard';
 import DetailedDrinkHeader from '../../components/DetailedDrinkHeader';
+import style from './detailed_drink.module.css';
 
 export default function DetailedDrink() {
   //  Globals
@@ -104,7 +105,8 @@ export default function DetailedDrink() {
       <DetailedDrinkHeader data={ drinkData } />
 
       <section>
-        <ul>
+        <h1 className={ style.subtitle }> Ingredients </h1>
+        <ul className={ style.ingredientList }>
           {drinkIngredients !== [] && drinkIngredients.map((ingredient, index) => (
             <li
               key={ index }
@@ -117,10 +119,17 @@ export default function DetailedDrink() {
       </section>
 
       <section>
-        <p data-testid="instructions">{drinkData.strInstructions}</p>
+        <h1 className={ style.subtitle }> Instructions </h1>
+        <p
+          data-testid="instructions"
+          className={ style.instructions }
+        >
+          {drinkData.strInstructions}
+        </p>
       </section>
 
       <section className="recomendation-div">
+        <h1 className={ style.subtitle }> Recomendations </h1>
         <section className="recomendation-wrap">
           { recommendedDrinks !== '' && recommendedDrinks.map((food, index) => (
             <RecommendedCard
@@ -134,20 +143,21 @@ export default function DetailedDrink() {
         </section>
       </section>
 
-      <section>
-        {buttonStatus
+      {buttonStatus
          && (
-           <button
-             className="start-button"
-             aria-label="Start Recipe"
-             data-testid="start-recipe-btn"
-             type="button"
-             onClick={ () => history.push(`/drinks/${idDrink}/in-progress`) }
-           >
-             { buttonName }
-           </button>
+           <section className={ style.startWrapper }>
+             <button
+               className={ style.startButton }
+               aria-label="Start Recipe"
+               data-testid="start-recipe-btn"
+               type="button"
+               onClick={ () => history.push(`/drinks/${idDrink}/in-progress`) }
+             >
+               { buttonName }
+             </button>
+           </section>
          )}
-      </section>
+
     </>
   );
 }

@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { fetchFoodbyId, fetchRecommendedDrinks } from '../../services/DetailedItem';
 import RecommendedCard from '../../components/RecommendedCard';
 import DetailedFoodHeader from '../../components/DetailedFoodHeader';
+import style from './detailed_food.module.css';
 
 export default function DetailedFood() {
   //  Globals
@@ -104,7 +105,8 @@ export default function DetailedFood() {
       <DetailedFoodHeader data={ foodData } />
 
       <section>
-        <ul>
+        <h1 className={ style.subtitle }> Ingredients </h1>
+        <ul className={ style.ingredientList }>
           {foodIngredients !== [] && foodIngredients.map((ingredient, index) => (
             <li
               key={ index }
@@ -117,10 +119,17 @@ export default function DetailedFood() {
       </section>
 
       <section>
-        <p data-testid="instructions">{foodData.strInstructions}</p>
+        <h1 className={ style.subtitle }> Instructions </h1>
+        <p
+          data-testid="instructions"
+          className={ style.instructions }
+        >
+          {foodData.strInstructions}
+        </p>
       </section>
 
       <section data-testid="video">
+        <h1 className={ style.subtitle }> Video </h1>
         {Object.keys(foodData).length
         && <YouTube
           opts={ { height: '200', width: '360' } }
@@ -129,6 +138,7 @@ export default function DetailedFood() {
       </section>
 
       <section className="recomendation-div">
+        <h1 className={ style.subtitle }> Recomendations </h1>
         <section className="recomendation-wrap">
           { recommendedFoods !== '' && recommendedFoods.map((drink, index) => (
             <RecommendedCard
@@ -142,20 +152,21 @@ export default function DetailedFood() {
         </section>
       </section>
 
-      <section>
-        {buttonStatus
+      {buttonStatus
          && (
-           <button
-             className="start-button"
-             aria-label="Start Recipe"
-             data-testid="start-recipe-btn"
-             type="button"
-             onClick={ () => history.push(`/foods/${idFood}/in-progress`) }
-           >
-             { buttonName }
-           </button>
+           <section className={ style.startWrapper }>
+             <button
+               className={ style.startButton }
+               aria-label="Start Recipe"
+               data-testid="start-recipe-btn"
+               type="button"
+               onClick={ () => history.push(`/foods/${idFood}/in-progress`) }
+             >
+               { buttonName }
+             </button>
+           </section>
          )}
-      </section>
+
     </>
   );
 }
