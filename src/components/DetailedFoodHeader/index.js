@@ -99,12 +99,15 @@ export default function DetailedFoodHeader({ data }) {
 
   return (
     <header className={ style.body }>
-      <img
-        className={ style.foodImage }
-        data-testid="recipe-photo"
-        src={ data.strMealThumb }
-        alt="foodImage"
-      />
+
+      <div className={ style.imgDiv }>
+        <img
+          className={ style.foodImage }
+          data-testid="recipe-photo"
+          src={ data.strMealThumb }
+          alt="foodImage"
+        />
+      </div>
 
       <div className={ style.menuWrapper }>
         <div className={ style.infoWrapper }>

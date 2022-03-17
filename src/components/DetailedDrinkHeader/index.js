@@ -96,12 +96,14 @@ export default function DetailedDrinkHeader({ data }) {
 
   return (
     <header className={ style.body }>
-      <img
-        className={ style.drinkImage }
-        data-testid="recipe-photo"
-        src={ data.strDrinkThumb }
-        alt="foodImage"
-      />
+      <div className={ style.imgDiv }>
+        <img
+          className={ style.drinkImage }
+          data-testid="recipe-photo"
+          src={ data.strDrinkThumb }
+          alt="foodImage"
+        />
+      </div>
 
       <div className={ style.menuWrapper }>
         <div className={ style.infoWrapper }>

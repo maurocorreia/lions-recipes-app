@@ -5,9 +5,14 @@
     color:#BE3D08;
 }
 
+.imgDiv{
+    width: 100vw;
+    height: 200px;
+    overflow: hidden;
+}
+
 .drinkImage{
     width: 100vw;
-    height: 180px;
 }
 
 .menuWrapper{
