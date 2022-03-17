@@ -2,9 +2,9 @@
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.253);
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   overflow: hidden;
-  width: 200px;
+  width: 150px;
 }
 
 .container__image img{

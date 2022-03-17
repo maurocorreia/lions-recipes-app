@@ -7,6 +7,7 @@ import {
   getIngredientsList, getIngredientSearch,
 } from '../../services/ExploreFoodsIngredients';
 import { saveListRecipes } from '../../redux/actions';
+import style from './style.module.css';
 
 export default function ExploreFoodsIngredients() {
   const [foodIngredients, setIngredients] = useState([]);
@@ -30,37 +31,48 @@ export default function ExploreFoodsIngredients() {
   }
 
   return (
-    <>
+    <section className={ style.container__ingredients }>
       <Header
         imgSize="51"
         fontSize="28"
         title="Explore Ingredients"
         local="container__header-explore-ingredients"
       />
-      {foodIngredients.length > 0 ? foodIngredients.map((ig, index) => (
-        <button
-          name={ ig.strIngredient }
-          type="button"
-          key={ index }
-          data-testid={ `${index}-ingredient-card` }
-          onClick={ handleIngredient }
-        >
-          <div name={ ig.strIngredient }>
-            <img
+      <section className={ style.container__all_cards }>
+        {foodIngredients.length > 0 ? foodIngredients.map((ig, index) => (
+          <div
+            key={ index }
+            className={ style.container__food }
+          >
+            <button
+              className={ style.container__button }
               name={ ig.strIngredient }
-              data-testid={ `${index}-card-img` }
-              src={ `https://www.themealdb.com/images/ingredients/${ig.strIngredient}-Small.png` }
-              alt={ ig.strIngredient }
-            />
+              type="button"
+              key={ index }
+              data-testid={ `${index}-ingredient-card` }
+              onClick={ handleIngredient }
+            >
+              <div
+                name={ ig.strIngredient }
+                className={ style.container__img }
+              >
+                <img
+                  name={ ig.strIngredient }
+                  data-testid={ `${index}-card-img` }
+                  src={ `https://www.themealdb.com/images/ingredients/${ig.strIngredient}-Small.png` }
+                  alt={ ig.strIngredient }
+                />
+              </div>
+              <div className={ style.container__name }>
+                <h4 data-testid={ `${index}-card-name` }>
+                  { ig.strIngredient }
+                </h4>
+              </div>
+            </button>
           </div>
-          <div>
-            <h4 data-testid={ `${index}-card-name` }>
-              { ig.strIngredient }
-            </h4>
-          </div>
-        </button>
-      )) : null}
+        )) : null}
+      </section>
       <Footer />
-    </>
+    </section>
   );
 }

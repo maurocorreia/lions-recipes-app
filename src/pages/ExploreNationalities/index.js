@@ -6,6 +6,7 @@ import NationCard from '../../components/NationCard';
 import {
   getNationalities, getFoodsByArea, getAll,
 } from '../../services/ExploreNationalities';
+import style from './style.module.css';
 
 export default function ExploreNationalities() {
   const [nationalities, setNationalities] = useState([]);
@@ -38,7 +39,7 @@ export default function ExploreNationalities() {
   }
 
   return (
-    <>
+    <section className={ style.container__nationality }>
       <Header
         fontSize="28"
         imgSize="51"
@@ -46,40 +47,48 @@ export default function ExploreNationalities() {
         title="Explore Nationalities"
         isSearch
       />
-
-      <select
-        name="nations"
-        id="nations"
-        data-testid="explore-by-nationality-dropdown"
-        onChange={ handleNation }
-      >
-        {nationalities.map((nation, index) => (
-          <option
-            key={ index }
-            value={ nation.strArea }
-            data-testid={ `${nation.strArea}-option` }
-          >
-            { nation.strArea }
-          </option>
-        ))}
-        <option data-testid="All-option" key="all" value="All">All</option>
-      </select>
-
-      {recipesByNation.map((nation, index) => (
-        <button
-          type="button"
-          key={ index }
-          onClick={ handleRecipe }
+      <div className={ style.container__nationality_all }>
+        <select
+          className={ style.select_nationality }
+          name="nations"
+          id="nations"
+          data-testid="explore-by-nationality-dropdown"
+          onChange={ handleNation }
         >
-          <NationCard
-            key={ index }
-            recipe={ nation }
-            index={ index }
-          />
-        </button>
-      ))}
-
+          {nationalities.map((nation, index) => (
+            <option
+              key={ index }
+              value={ nation.strArea }
+              data-testid={ `${nation.strArea}-option` }
+            >
+              { nation.strArea }
+            </option>
+          ))}
+          <option data-testid="All-option" key="all" value="All">All</option>
+        </select>
+        <section className={ style.container__all_cards }>
+          {recipesByNation.map((nation, index) => (
+            <div
+              key={ index }
+              className={ style.container__button_all }
+            >
+              <button
+                className={ style.container__button }
+                type="button"
+                key={ index }
+                onClick={ handleRecipe }
+              >
+                <NationCard
+                  key={ index }
+                  recipe={ nation }
+                  index={ index }
+                />
+              </button>
+            </div>
+          ))}
+        </section>
+      </div>
       <Footer />
-    </>
+    </section>
   );
 }
