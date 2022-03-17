@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap') ;
+
+.container__favCard {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.253);
+  margin-bottom: 10px;
+  overflow: hidden;
+  width: 150px;
+}
+
+.container__favCard input {
+  width: 100%;
+}
+
+.container__favCard button {
+  margin-bottom: 5px;
+  margin-left: 20px;
+  margin-top: 5px;
+  width: 30%;
+}
+
+.container__favCard h4 {
+  color: #be3d08;
+  font-family: Montserrat Alternates , sans-serif;
+  font-size: 15px;
+  margin-top: 5px;
+  padding: 0 10px;
+}
+
+.container__favCard h3 {
+  color: #be3d08;
+  font-family: Montserrat Alternates , sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  margin-top: 5px;
+  padding: 0 10px;
+}
+
