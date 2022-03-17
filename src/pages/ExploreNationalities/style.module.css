@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
+
+.container__nationality {
+    background-color: #f0f0f0;
+    height: 1000vh;
+}
+
+.container__nationality_all {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 5%;
+  width: 100%;
+}
+
+.container__all_cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.select_nationality {
+  background-color:  #be3d08 ;
+  border: 1px solid #ACC4CC;
+  border-radius: 5px;
+  caret-color: transparent;
+  color: #ACC4CC;
+  font-size: 20px;
+  font-family: 'Montserrat Alternates', sans-serif;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.253));
+  height: 40px;
+  outline: none;
+  padding-inline-start: 2px;
+  width: 300px;
+}
+
+/* .container__button_all {
+  width: 150px;
+} */
+
+.container__button {
+  background-color: #f0f0f0;
+  border: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import getRandomDrinkRecipe from '../../services/ExploreDrinks';
+import style from './style.module.css';
 
 export default function ExploreDrinks() {
   const history = useHistory();
@@ -11,7 +12,6 @@ export default function ExploreDrinks() {
     const ID = await getRandomDrinkRecipe();
     history.push(`/drinks/${ID}`);
   }
-
   return (
     <div>
       <Header
@@ -20,21 +20,24 @@ export default function ExploreDrinks() {
         fontSize="35"
         local="container__header-explore-foods"
       />
-      <button
-        type="button"
-        data-testid="explore-by-ingredient"
-        onClick={ () => history.push('/explore/drinks/ingredients') }
-      >
-        By Ingredient
-      </button>
-
-      <button
-        type="button"
-        data-testid="explore-surprise"
-        onClick={ handleSurprise }
-      >
-        Surprise me!
-      </button>
+      <section className={ style.container__drink }>
+        <button
+          className={ style.explore__drink__ingredients }
+          type="button"
+          data-testid="explore-by-ingredient"
+          onClick={ () => history.push('/explore/drinks/ingredients') }
+        >
+          By Ingredient
+        </button>
+        <button
+          className={ style.explore__drink__surprise }
+          type="button"
+          data-testid="explore-surprise"
+          onClick={ handleSurprise }
+        >
+          Surprise me!
+        </button>
+      </section>
       <Footer />
     </div>
   );
