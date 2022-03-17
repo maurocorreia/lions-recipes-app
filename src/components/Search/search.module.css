@@ -24,39 +24,41 @@
 }
 
 .container__search--input input::placeholder {
-  color: #97707D;
+  color: #97707d;
   padding-inline-start: 10px;
 }
 
 .container__search--input button {
-  background-color: #BE3D08;
+  background-color: #be3d08;
+  border: 1px solid #acc4cc;
   border-radius: 5px;
-  border: 1px solid #ACC4CC;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.274);
-  color: #ACC4CC;
+  color: #acc4cc;
   height: 35px;
   margin-left: 10px;
-  padding: 0 10px 0 10px;
+  padding: 0 10px;
 }
 
 .container__search--input input {
+  border: 1px solid #acc4cc;
   border-radius: 5px;
-  border: 1px solid #ACC4CC;
-  color: #ACC4CC;
+  color: #acc4cc;
   height: 35px;
   outline: none;
 }
 
 .container__filters label {
-  color: #97707D;
-  font-family: 'Montserrat Alternates', sans-serif;;
+  color: #97707d;
+  font-family: Montserrat Alternates , sans-serif;
 }
 
 @keyframes teste {
-  from {
+  from 
+  {
     height: 0;
   }
-  to {
+  to 
+  {
     height: 95px;
   }
 }
