@@ -1,14 +1,17 @@
 .footer__container {
   background-color: #f79e07;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 10px;
+  gap: 72px;
   width: 100%;
 }
 
 .footer__container-button {
   background-color: #be3d08;
+  border: 1px solid #acc4cc;
   border-radius: 5px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.212);
   height: 50px;
   width: 50px;
 }

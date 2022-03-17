@@ -7,8 +7,9 @@
 
 .imgDiv{
     width: 100vw;
-    height: 200px;
+    height: auto;
     overflow: hidden;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.486);
 }
 
 .drinkImage{

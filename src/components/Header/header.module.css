@@ -55,6 +55,23 @@
   padding: 0 5px 0 7px;
 }
 
+.container__header-doneRecipes {
+  align-items: center;
+  background-color: #f79e07;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.74);
+  display: flex;
+  gap: 15px;
+  padding: 0 5px 0 7px;
+}
+
+.container__header-favoriteRecipes {
+  align-items: center;
+  background-color: #f79e07;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.74);
+  display: flex;
+  padding: 0 5px 0 7px;
+}
+
 .container__button-profile, .container__search {
   padding-top: 10px;
   width: 60px;

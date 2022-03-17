@@ -31,7 +31,7 @@ export default function ExploreDrinkIngredients() {
   return (
     <>
       <Header
-        imgSize="51"
+        imgSize="52"
         fontSize="28"
         title="Explore Ingredients"
         local="container__header-explore-ingredients"

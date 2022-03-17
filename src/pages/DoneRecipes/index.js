@@ -28,7 +28,12 @@ export default function DoneRecipes() {
 
   return (
     <div>
-      <Header title="Done Recipes" />
+      <Header
+        imgSize="52"
+        title="Done Recipes"
+        fontSize="32"
+        local="container__header-doneRecipes"
+      />
       <div>
         <button
           value="all"

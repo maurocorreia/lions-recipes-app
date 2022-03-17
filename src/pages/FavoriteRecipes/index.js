@@ -21,8 +21,13 @@ export default function FavoriteRecipes() {
   useEffect(() => setFavoriteList(favoriteRecipe), [favoriteRecipe]);
 
   return (
-    <>
-      <Header title="Favorite Recipes" />
+    <section style={ { backgroundColor: '#f0f0f0', height: '1000vh' } }>
+      <Header
+        imgSize="52"
+        fontSize="32"
+        title="Favorite Recipes"
+        local="container__header-favoriteRecipes"
+      />
       <div className={ style.container__favorites }>
         <button
           value="all"
@@ -48,6 +53,8 @@ export default function FavoriteRecipes() {
         >
           Drinks
         </button>
+      </div>
+      <div className={ style.container__allCards }>
         {favoriteList.map((item, index) => (
           <CardFavorites
             key={ item.name }
@@ -55,6 +62,6 @@ export default function FavoriteRecipes() {
             index={ index }
           />))}
       </div>
-    </>
+    </section>
   );
 }

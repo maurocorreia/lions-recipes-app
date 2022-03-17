@@ -105,7 +105,9 @@ export default function DetailedFood() {
       <DetailedFoodHeader data={ foodData } />
 
       <section>
-        <h1 className={ style.subtitle }> Ingredients </h1>
+        <div className={ style.box__shadow }>
+          <h1 className={ style.subtitle }> Ingredients </h1>
+        </div>
         <ul className={ style.ingredientList }>
           {foodIngredients !== [] && foodIngredients.map((ingredient, index) => (
             <li
@@ -119,7 +121,9 @@ export default function DetailedFood() {
       </section>
 
       <section>
-        <h1 className={ style.subtitle }> Instructions </h1>
+        <div className={ style.box__shadow }>
+          <h1 className={ style.subtitle }> Instructions </h1>
+        </div>
         <p
           data-testid="instructions"
           className={ style.instructions }
@@ -128,8 +132,10 @@ export default function DetailedFood() {
         </p>
       </section>
 
-      <section data-testid="video">
-        <h1 className={ style.subtitle }> Video </h1>
+      <section data-testid="video" className={ style.video }>
+        <div className={ style.box__shadow }>
+          <h1 className={ style.subtitle }> Video </h1>
+        </div>
         {Object.keys(foodData).length
         && <YouTube
           opts={ { height: '200', width: '360' } }
@@ -138,7 +144,9 @@ export default function DetailedFood() {
       </section>
 
       <section className="recomendation-div">
-        <h1 className={ style.subtitle }> Recomendations </h1>
+        <div className={ style.box__shadow }>
+          <h1 className={ style.subtitle }> Recomendations </h1>
+        </div>
         <section className="recomendation-wrap">
           { recommendedFoods !== '' && recommendedFoods.map((drink, index) => (
             <RecommendedCard
