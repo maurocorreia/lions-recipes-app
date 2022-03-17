@@ -93,7 +93,10 @@ function IngredientsList({ ingredients, measure, idRecipes, type, data }) {
   return (
     <section>
       <section>
-        <h1 className={ style.subtitle }> Ingredients </h1>
+        <div className={ style.box__shadow }>
+          <h1 className={ style.subtitle }> Ingredients </h1>
+        </div>
+
         <ul className={ style.ingredientList }>
           {ingredients !== [] && ingredients.map((ingredient, index) => (
             <li
@@ -121,7 +124,9 @@ function IngredientsList({ ingredients, measure, idRecipes, type, data }) {
         </ul>
       </section>
       <section>
-        <h1 className={ style.subtitle }> Instructions </h1>
+        <div className={ style.box__shadow }>
+          <h1 className={ style.subtitle }> Instructions </h1>
+        </div>
         <p
           className={ style.instructions }
           data-testid="instructions"

@@ -105,7 +105,9 @@ export default function DetailedDrink() {
       <DetailedDrinkHeader data={ drinkData } />
 
       <section>
-        <h1 className={ style.subtitle }> Ingredients </h1>
+        <div className={ style.box__shadow }>
+          <h1 className={ style.subtitle }> Ingredients </h1>
+        </div>
         <ul className={ style.ingredientList }>
           {drinkIngredients !== [] && drinkIngredients.map((ingredient, index) => (
             <li
@@ -119,7 +121,9 @@ export default function DetailedDrink() {
       </section>
 
       <section>
-        <h1 className={ style.subtitle }> Instructions </h1>
+        <div className={ style.box__shadow }>
+          <h1 className={ style.subtitle }> Instructions </h1>
+        </div>
         <p
           data-testid="instructions"
           className={ style.instructions }
@@ -129,7 +133,9 @@ export default function DetailedDrink() {
       </section>
 
       <section className="recomendation-div">
-        <h1 className={ style.subtitle }> Recomendations </h1>
+        <div className={ style.box__shadow }>
+          <h1 className={ style.subtitle }> Recomendations </h1>
+        </div>
         <section className="recomendation-wrap">
           { recommendedDrinks !== '' && recommendedDrinks.map((food, index) => (
             <RecommendedCard

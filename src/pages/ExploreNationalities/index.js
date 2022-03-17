@@ -41,7 +41,7 @@ export default function ExploreNationalities() {
     <>
       <Header
         fontSize="28"
-        imgSize="51"
+        imgSize="52"
         local="container__header-explorar-nationalites"
         title="Explore Nationalities"
         isSearch

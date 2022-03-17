@@ -12,11 +12,11 @@ export default function Profile() {
     <>
       <Header
         title="Profile"
-        imgSize="51"
+        imgSize="52"
         fontSize="40"
         local="container__header-profile"
       />
-       <main className={ style.body }>
+      <main className={ style.body }>
         <h1 className={ style.h1 } data-testid="profile-email">{email && email.email}</h1>
         <button
           data-testid="profile-done-btn"

@@ -41,6 +41,7 @@
 	border: none;
     border-radius: 5px;
 	outline: inherit;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.274);
 }
 
 .finishButton:disabled{
@@ -52,6 +53,7 @@
 	border: none;
     border-radius: 5px;
 	outline: inherit;
+  box-shadow: none
 }
 
 .finishWrapper{
@@ -68,4 +70,8 @@
     color: #f79e07;
     font-size: 17px;
     margin: 1em 1.5em 1em 1.5em;
+}
+
+.box__shadow {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.466);
 }
