@@ -6,6 +6,7 @@ import { fetchAllFoods } from '../../services/FetchDrinksAndFoods';
 import { saveListRecipes } from '../../redux/actions';
 import RenderCard from '../../components/RenderCard';
 import { fetchFiltersFood, fetchFoodsByCategory } from '../../services/FetchFilters';
+import style from './foods.module.css';
 
 export default function Foods() {
   const [lastFilter, setLastFilter] = useState('');
@@ -36,9 +37,14 @@ export default function Foods() {
   }
 
   return (
-    <section>
-      <Header title="Foods" isSearch />
-      <section>
+    <section style={ { backgroundColor: '#f0f0f0' } }>
+      <Header
+        imgSize="51"
+        title="Foods"
+        isSearch
+        local="container__header-tela-principal"
+      />
+      <section className={ style.container__buttons }>
         <button
           type="button"
           onClick={ () => handleClick('All') }
