@@ -37,7 +37,13 @@
 	padding: 0;
 	outline: inherit;
 }
+
 .buttonWrapper button img{
     width: 26px;
     height: 26px;
+}
+
+.shareMessege{
+    width: 100vw;
+    text-align: center;
 }

@@ -143,20 +143,21 @@ export default function DetailedDrink() {
         </section>
       </section>
 
-      <section className={ style.startWrapper }>
-        {buttonStatus
+      {buttonStatus
          && (
-           <button
-             className={ style.startButton }
-             aria-label="Start Recipe"
-             data-testid="start-recipe-btn"
-             type="button"
-             onClick={ () => history.push(`/drinks/${idDrink}/in-progress`) }
-           >
-             { buttonName }
-           </button>
+           <section className={ style.startWrapper }>
+             <button
+               className={ style.startButton }
+               aria-label="Start Recipe"
+               data-testid="start-recipe-btn"
+               type="button"
+               onClick={ () => history.push(`/drinks/${idDrink}/in-progress`) }
+             >
+               { buttonName }
+             </button>
+           </section>
          )}
-      </section>
+
     </>
   );
 }

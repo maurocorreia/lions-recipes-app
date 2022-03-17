@@ -152,20 +152,21 @@ export default function DetailedFood() {
         </section>
       </section>
 
-      <section className={ style.startWrapper }>
-        {buttonStatus
+      {buttonStatus
          && (
-           <button
-             className={ style.startButton }
-             aria-label="Start Recipe"
-             data-testid="start-recipe-btn"
-             type="button"
-             onClick={ () => history.push(`/foods/${idFood}/in-progress`) }
-           >
-             { buttonName }
-           </button>
+           <section className={ style.startWrapper }>
+             <button
+               className={ style.startButton }
+               aria-label="Start Recipe"
+               data-testid="start-recipe-btn"
+               type="button"
+               onClick={ () => history.push(`/foods/${idFood}/in-progress`) }
+             >
+               { buttonName }
+             </button>
+           </section>
          )}
-      </section>
+
     </>
   );
 }

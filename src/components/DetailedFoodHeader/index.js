@@ -129,7 +129,9 @@ export default function DetailedFoodHeader({ data }) {
         </div>
 
       </div>
-      {copied && <p>Link copied!</p>}
+      <div className={ style.shareMessege }>
+        {copied && <p>Link copied!</p>}
+      </div>
     </header>
   );
 }
