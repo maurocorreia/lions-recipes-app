@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap') ;
 
-.body{
+.body {
   background-color: #f79e07;
   background-image: linear-gradient(180deg, #f79e07 60%, #c07a00);
   height: 100vh;
@@ -20,21 +20,21 @@
   width: 100%;
 }
 
-.container__image img{
+.container__image img {
   width: 100%;
 }
 
 .container__image {
-  width: 300px;
   height: 300px;
-} 
+  width: 300px;
+}
 
 .login__input-password, .login__input-email {
-  background-color:  #be3d08 ;
-  border: 1px solid #ACC4CC;
+  background-color: #be3d08;
+  border: 1px solid #acc4cc;
   border-radius: 5px;
   caret-color: transparent;
-  color: #ACC4CC;
+  color: #acc4cc;
   font-size: 20px;
   height: 40px;
   outline: none;
@@ -43,15 +43,15 @@
 }
 
 .login__input-password::placeholder, .login__input-email::placeholder {
-  color: #ACC4CC;
+  color: #acc4cc;
 }
 
 .button__visible {
-  background-color:  #be3d08 ;
+  background-color: #be3d08;
   border: none;
-  border-bottom: 1px solid #ACC4CC;
-  border-top: 1px solid #ACC4CC;
-  color: #ACC4CC;
+  border-bottom: 1px solid #acc4cc;
+  border-top: 1px solid #acc4cc;
+  color: #acc4cc;
   font-size: 20px;
   height: 40px;
   position: absolute;
@@ -60,9 +60,9 @@
 
 .button__enter {
   background-color: #be3d08;
-  border: 1px solid #ACC4CC;
+  border: 1px solid #acc4cc;
   border-radius: 5px;
-  color: #ACC4CC;
+  color: #acc4cc;
   height: 40px;
   margin-top: 30px;
   width: 120px;
@@ -72,16 +72,15 @@
   background-color: #be3c086e;
 }
 
-.container__name h1{
+.container__name h1 {
   color: #be3d08;
   filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.253));
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: Montserrat Alternates , sans-serif;
   font-size: 40px;
   font-style: normal;
   font-weight: 400;
-  letter-spacing: 0em;
+  letter-spacing: 0;
   line-height: 48px;
   margin-bottom: 30px;
   text-align: left;
 }
-

@@ -1,6 +1,5 @@
-.container__buttons {
+.container__favorites {
   background-color: #f79e07;
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.274);
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -8,7 +7,7 @@
   padding: 0 10px 15px;
 }
 
-.container__buttons button {
+.container__favorites button {
   background-color: #be3d08;
   border: 1px solid #acc4cc;
   border-radius: 5px;
