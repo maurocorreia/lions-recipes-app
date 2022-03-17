@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './style.css';
+// import style from './style.module.css';
 
 export default function NationCard({ recipe, index }) {
   return (

@@ -2,4 +2,30 @@
 
 .container__explore {
     background-color: #F79E07;
+    background-image: linear-gradient(180deg, #f79e07 60%, #c07a00);
+    height: 100vh;
+}
+
+.container_buttons {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 50%;
+  width: 100%;
+} 
+
+.explore_food, .explore_drink  {
+  background-color:  #be3d08 ;
+  border: 1px solid #ACC4CC;
+  border-radius: 5px;
+  caret-color: transparent;
+  color: #ACC4CC;
+  font-size: 20px;
+  font-family: 'Montserrat Alternates', sans-serif;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.253));
+  height: 40px;
+  outline: none;
+  padding-inline-start: 2px;
+  width: 300px;
 }
