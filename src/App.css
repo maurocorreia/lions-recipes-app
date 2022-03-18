@@ -54,7 +54,6 @@
 }
 
 .recomendation-div {
-  margin-bottom: 50px;
   max-width: 100%;
   overflow: hidden;
   padding-bottom: 50px;
@@ -63,9 +62,4 @@
 .recomendation-wrap {
   display: flex;
   overflow-x: scroll;
-}
-
-.start-button {
-  bottom: 0;
-  position: fixed;
 }
