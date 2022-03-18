@@ -1,0 +1,31 @@
+.container__done {
+    background-color: #f0f0f0;
+    height: 1000vh;
+}
+
+.container__done_all {
+  background-color: #f0f0f0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-evenly;
+  padding: 10px 10px 15px;
+}
+
+.button_all {
+    background-color: #be3d08;
+    border: 1px solid #acc4cc;
+    border-radius: 5px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.274);
+    color: #acc4cc;
+    padding: 0 10px;
+    width: 90px; 
+}
+
+.container_cards {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content:space-between;
+  width: 100vw;
+}
