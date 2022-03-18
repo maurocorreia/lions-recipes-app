@@ -9,7 +9,7 @@ export default function Profile() {
   const email = JSON.parse(localStorage.getItem('user'));
 
   return (
-    <>
+    <div className={ style.root }>
       <Header
         title="Profile"
         imgSize="52"
@@ -49,6 +49,6 @@ export default function Profile() {
       </main>
       <Footer />
 
-    </>
+    </div>
   );
 }

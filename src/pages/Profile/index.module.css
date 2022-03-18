@@ -1,15 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
 
-.body{
+.root{
   background-color: #f79e07;
+  height: 100vh;
   background-image: linear-gradient(180deg, #f79e07 60%, #c07a00);
-  height: 80vh;
+}
+
+.body{
   align-items: center;
   display: flex;
   flex-direction: column;
   gap: 40px;
   padding-top: 50px;
-  overflow: hidden;
 }
 
 .input {
