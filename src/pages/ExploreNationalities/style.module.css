@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
 
 .container__nationality_all {
+  overflow: hidden;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -30,10 +31,6 @@
   padding-inline-start: 2px;
   width: 96%;
 }
-
-/* .container__button_all {
-  width: 150px;
-} */
 
 .container__button {
   background-color: #f0f0f0;
