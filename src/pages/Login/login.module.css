@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap') ;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
 
 .body {
   background-color: #f79e07;
@@ -25,8 +25,10 @@
 }
 
 .container__image {
-  height: 300px;
-  width: 300px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  height: 200px;
+  width: 200px;
 }
 
 .login__input-password, .login__input-email {
@@ -76,7 +78,7 @@
   color: #be3d08;
   filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.253));
   font-family: Montserrat Alternates , sans-serif;
-  font-size: 40px;
+  font-size: 35px;
   font-style: normal;
   font-weight: 400;
   letter-spacing: 0;

@@ -4,6 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  height: 77px;
   justify-content: space-evenly;
   padding: 0 10px 15px;
 }
@@ -16,4 +17,10 @@
   color: #acc4cc;
   padding: 0 10px;
   width: 90px;
+  animation: buttonVisible .3s forwards linear;
+}
+
+@keyframes buttonVisible {
+  from {opacity: 0;}
+  to { opacity: 1;}
 }

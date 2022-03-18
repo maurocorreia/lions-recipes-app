@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import Loading from '../../components/Loading';
 import NationCard from '../../components/NationCard';
 import {
   getNationalities, getFoodsByArea, getAll,
@@ -55,6 +56,7 @@ export default function ExploreNationalities() {
           data-testid="explore-by-nationality-dropdown"
           onChange={ handleNation }
         >
+          <option data-testid="All-option" key="all" value="All">All</option>
           {nationalities.map((nation, index) => (
             <option
               key={ index }
@@ -64,10 +66,9 @@ export default function ExploreNationalities() {
               { nation.strArea }
             </option>
           ))}
-          <option data-testid="All-option" key="all" value="All">All</option>
         </select>
         <section className={ style.container__all_cards }>
-          {recipesByNation.map((nation, index) => (
+          {recipesByNation.length ? recipesByNation.map((nation, index) => (
             <div
               key={ index }
               className={ style.container__button_all }
@@ -85,7 +86,7 @@ export default function ExploreNationalities() {
                 />
               </button>
             </div>
-          ))}
+          )) : <Loading local="explorar-nationalities" />}
         </section>
       </div>
       <Footer />

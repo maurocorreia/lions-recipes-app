@@ -17,7 +17,7 @@ export default function DetailedDrinkHeader({ data }) {
   const dispatch = useDispatch();
   const favoriteRecipe = useSelector(({ recipesReducer }) => (
     recipesReducer.favoriteRecipes));
-  console.log(data);
+
   function copyLink() {
     copy(`http://localhost:3000/drinks/${idDrink}`);
     setCopied(true);

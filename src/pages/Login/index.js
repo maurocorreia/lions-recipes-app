@@ -4,7 +4,7 @@ import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { userEmail } from '../../redux/actions';
 import style from './login.module.css';
-import logo from './image-logo.png';
+import logo from './image.png';
 
 const PASSWORD_MIN_LENGTH = 6;
 export default function Login() {

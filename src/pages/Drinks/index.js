@@ -7,6 +7,7 @@ import { saveListRecipes } from '../../redux/actions';
 import RenderCard from '../../components/RenderCard';
 import { fetchFiltersDrinks, fetchDrinksByCategory } from '../../services/FetchFilters';
 import style from './drinks.module.css';
+import Loading from '../../components/Loading';
 
 export default function Drinks() {
   const [lastFilter, setLastFilter] = useState('');
@@ -45,13 +46,6 @@ export default function Drinks() {
         local="container__header-tela-principal"
       />
       <section className={ style.container__buttons }>
-        <button
-          data-testid="All-category-filter"
-          type="button"
-          onClick={ () => handleClick('All') }
-        >
-          All
-        </button>
         {filters.map(({ strCategory }) => (
           <button
             data-testid={ `${strCategory}-category-filter` }
@@ -64,7 +58,9 @@ export default function Drinks() {
               : strCategory.split('/')[0]}
           </button>))}
       </section>
-      <RenderCard Allrecipes={ recipes } />
+      {!recipes.length || recipes[0].idMeal
+        ? <Loading local="main-screen" />
+        : <RenderCard Allrecipes={ recipes } /> }
       <Footer />
     </section>
   );
