@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
 
-.container__nationality {
-    background-color: #f0f0f0;
-    height: 1000vh;
-}
-
 .container__nationality_all {
   align-items: center;
   display: flex;
@@ -18,6 +13,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  padding-bottom: 60px;
 }
 
 .select_nationality {
@@ -32,7 +28,7 @@
   height: 40px;
   outline: none;
   padding-inline-start: 2px;
-  width: 300px;
+  width: 96%;
 }
 
 /* .container__button_all {

@@ -8,6 +8,7 @@ import {
 } from '../../services/ExploreDrinksIngredients';
 import { saveListRecipes } from '../../redux/actions';
 import style from './style.module.css';
+import Loading from '../../components/Loading';
 
 export default function ExploreDrinkIngredients() {
   const [drinkIngredients, setIngredients] = useState([]);
@@ -63,7 +64,7 @@ export default function ExploreDrinkIngredients() {
               </div>
             </button>
           </section>
-        )) : null}
+        )) : <Loading local="explore-ingredients" />}
       </section>
       <Footer />
     </section>

@@ -1,8 +1,9 @@
-const MAX_FILTERS = 5;
+const MAX_FILTERS = 6;
 
 export async function fetchFiltersFood() {
   try {
     const { meals } = await (await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list')).json();
+    meals.unshift({ strCategory: 'All' });
     return meals.slice(0, MAX_FILTERS);
   } catch (error) {
     console.error(error.message);
@@ -12,6 +13,7 @@ export async function fetchFiltersFood() {
 export async function fetchFiltersDrinks() {
   try {
     const { drinks } = await (await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')).json();
+    drinks.unshift({ strCategory: 'All' });
     return drinks.slice(0, MAX_FILTERS);
   } catch (error) {
     console.error(error.message);

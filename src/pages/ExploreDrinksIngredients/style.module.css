@@ -10,7 +10,8 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   margin-top: 15px;
-  margin-bottom: 75px;
+  gap: 10px;
+  padding-bottom: 80px;
 }
 
 .container__drink {

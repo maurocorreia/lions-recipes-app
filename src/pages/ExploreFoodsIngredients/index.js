@@ -8,6 +8,7 @@ import {
 } from '../../services/ExploreFoodsIngredients';
 import { saveListRecipes } from '../../redux/actions';
 import style from './style.module.css';
+import Loading from '../../components/Loading';
 
 export default function ExploreFoodsIngredients() {
   const [foodIngredients, setIngredients] = useState([]);
@@ -70,7 +71,7 @@ export default function ExploreFoodsIngredients() {
               </div>
             </button>
           </div>
-        )) : null}
+        )) : <Loading local="explore-ingredients" />}
       </section>
       <Footer />
     </section>
