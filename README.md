@@ -6,9 +6,11 @@ Lions Recipes is a recipe app where you can check how to do your favorite meals 
 
 <br>
 
-<img height="600" widht= "200" src="https://i.imgur.com/JygKehr.png">
+<div align="center">
+  <img height="500" widht= "600" src="https://i.imgur.com/JygKehr.png">
+</div>
 
-
+<br>
 
 # Skills
 This project was made with:
